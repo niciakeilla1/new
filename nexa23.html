@@ -1,0 +1,4494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<title>NEXA</title>
+
+<style>
+
+:root{
+    --ink:#14171F;
+    --paper:#F6F4EF;
+    --paper-dim:#ECE7DA;
+    --amber:#E8A33D;
+    --amber-deep:#C6811F;
+    --teal:#2F8F7A;
+    --teal-soft:#E1F0EC;
+    --line:#DDD7C8;
+    --muted:#8A8F98;
+    --danger:#D65C4F;
+    --danger-soft:#FBE7E4;
+}
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    background:var(--paper);
+    font-family:Arial, Helvetica, sans-serif;
+    padding-bottom:100px;
+}
+
+[hidden]{
+    display:none !important;
+}
+
+/* NAVIGATION */
+
+.nav-item:hover{
+    color:#1f3d62;
+}
+
+.nav-item:hover i{
+    color:#1a4a7a;
+}
+
+.highlight-gpld{
+    background:#f7edd9;
+    border-radius:60px;
+    padding:2px 12px;
+}
+
+/* TOP */
+
+.topbar{
+    padding:28px 24px 18px;
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    border-bottom:1px solid var(--line);
+}
+
+.eyebrow{
+    display:block;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    font-weight:600;
+    margin-bottom:4px;
+}
+
+.greet h1{
+    font-size:24px;
+    margin:0;
+    color:var(--ink);
+    font-weight:700;
+}
+
+/* BOTTOM NAVIGATION */
+
+.tabbar{
+    position:fixed;
+    left:0;
+    right:0;
+    bottom:0;
+    background:var(--ink);
+    padding:10px 16px;
+    display:flex;
+    justify-content:center;
+    gap:6px;
+    box-shadow:0 -8px 24px -8px rgba(0,0,0,0.25);
+    z-index:100;
+}
+
+.tabbar-inner{
+    display:flex;
+    gap:6px;
+    max-width:900px;
+    width:100%;
+    justify-content:space-between;
+}
+
+.tab-btn{
+    flex:1;
+    max-width:120px;
+    position:relative;
+    background:transparent;
+    border:none;
+    color:#7D8190;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+    padding:9px 6px;
+    border-radius:20px;
+    cursor:pointer;
+    transition:all .2s ease;
+}
+
+.tab-btn i{
+    font-size:16px;
+}
+
+.tab-btn .tab-label{
+    font-size:10.5px;
+    font-weight:700;
+}
+
+.tab-btn.active{
+    background:var(--amber);
+    color:var(--ink);
+}
+
+.tab-btn:hover:not(.active){
+    color:var(--paper);
+}
+
+/* LOGO */
+
+.nexa-text{
+    padding-top:20px;
+}
+
+.logo{
+    text-align:center;
+    font-size:30px;
+    color:var(--amber);
+}
+
+.nexa-name{
+    text-align:center;
+    font-weight:700;
+    font-size:28px;
+    letter-spacing:1px;
+    color:#111;
+    line-height:1;
+}
+
+.nexa-sub{
+    text-align:center;
+    font-family:Georgia,'Times New Roman',serif;
+    font-size:12px;
+    letter-spacing:3px;
+    color:#666;
+    margin-top:2px;
+}
+
+.divider{
+    height:1px;
+    background:var(--line);
+    margin:20px 24px 24px;
+}
+
+/* HOME */
+
+.stats-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+    margin:0 24px;
+}
+
+.stat-card{
+    background:#14171F;
+    border-radius:16px;
+    padding:18px 14px;
+    min-height:80px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    position:relative;
+}
+
+.stat-value{
+    color:#E8A33D;
+    font-size:21px;
+    font-weight:700;
+    letter-spacing:1px;
+    margin-bottom:5px;
+}
+
+.stat-label{
+    color:#D9D9D9;
+    font-size:11px;
+}
+
+/* WITHDRAW ONLY ON HOME */
+
+.home-withdraw{
+    margin-top:8px;
+    margin-left:auto;
+    padding:8px 16px;
+    border:none;
+    border-radius:50px;
+    background:var(--amber);
+    color:var(--ink);
+    font-size:12px;
+    font-weight:700;
+    cursor:pointer;
+    align-self:flex-end;
+}
+
+/* ORDER */
+
+.column{
+    display:flex;
+    flex-direction:column;
+    gap:24px;
+    align-items:center;
+}
+
+.screen{
+    padding-bottom:100px;
+}
+
+.outer-box{
+    width:460px;
+    max-width:calc(100% - 30px);
+    padding:20px;
+    border:2px solid #333;
+    border-radius:10px;
+    background:#0D1D32;
+}
+
+.title{
+    margin:0 0 14px 0;
+    font-size:18px;
+    font-weight:bold;
+}
+
+.picture-row{
+    display:flex;
+    align-items:stretch;
+    gap:15px;
+    width:100%;
+}
+
+.picture-row img{
+    width:120px;
+    height:200px;
+    object-fit:cover;
+    border-radius:10px;
+}
+
+.text-box{
+    flex:1;
+    background:#f4f4f4;
+    border-radius:10px;
+    padding:20px;
+    min-height:200px;
+    position:relative;
+}
+
+.text-box h2{
+    color:rgb(6,6,75);
+    margin-top:0;
+}
+
+.text-box h4{
+    margin-bottom:50px;
+}
+
+.text-box button{
+    position:absolute;
+    right:20px;
+    bottom:15px;
+    padding:12px 25px;
+    border:1px solid rgb(6,6,75);
+    border-radius:50px;
+    background:white;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.text-box button:hover{
+    background:#f7edd9;
+}
+
+/* PAYMENT */
+
+.payment-box{
+    width:460px;
+    max-width:calc(100% - 30px);
+    margin:auto;
+    background:#0D1D32;
+    border:1px solid #263C55;
+    border-radius:22px;
+    padding:24px;
+}
+
+.payment-header{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:24px;
+}
+
+.back-btn{
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    background:#071426;
+    border:1px solid #263C55;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+}
+
+.payment-title{
+    color:white;
+    font-size:22px;
+    margin:0;
+}
+
+.payment-item{
+    background:#071426;
+    border:1px solid #263C55;
+    border-radius:16px;
+    padding:18px;
+    margin-bottom:12px;
+}
+
+.payment-item h3{
+    color:#FFE28A;
+    margin:0 0 8px;
+}
+
+.payment-item p{
+    color:#7890AC;
+    margin:5px 0;
+}
+
+.payment-method{
+    width:100%;
+    padding:14px;
+    margin-top:10px;
+    border:none;
+    border-radius:40px;
+    background:var(--amber);
+    color:var(--ink);
+    font-weight:700;
+    cursor:pointer;
+}
+
+.payment-choice{
+    width:100%;
+    padding:14px;
+    margin-top:10px;
+    border:none;
+    border-radius:40px;
+    background:var(--amber);
+    color:var(--ink);
+    font-weight:700;
+    cursor:pointer;
+}
+
+/* CHAT */
+
+#screen-chat{
+    width:100%;
+    min-height:calc(100vh - 100px);
+    padding-bottom:120px;
+}
+
+.section-title{
+    margin:24px;
+    color:var(--ink);
+    font-size:22px;
+    font-weight:700;
+}
+
+.chat-row{
+    margin:0 24px 12px;
+    padding:14px 16px;
+    background:#0D1D32;
+    border:1px solid #263C55;
+    border-radius:16px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    cursor:pointer;
+}
+
+.chat-row:hover{
+    border-color:var(--amber);
+}
+
+.chat-info{
+    flex:1;
+    min-width:0;
+}
+
+.c-name{
+    margin:0 0 4px;
+    color:#FFFFFF;
+    font-size:14px;
+    font-weight:700;
+}
+
+.c-msg{
+    margin:0;
+    color:#7890AC;
+    font-size:12px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.chat-meta{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-end;
+    gap:5px;
+}
+
+.c-time{
+    color:#7890AC;
+    font-size:10px;
+}
+
+.unread-dot{
+    width:8px;
+    height:8px;
+    background:var(--amber);
+    border-radius:50%;
+}
+
+/* CHAT CONVERSATION */
+
+.chat-full{
+    position:fixed;
+    inset:0;
+    width:100%;
+    height:100%;
+    background:var(--paper);
+    z-index:150;
+    display:flex;
+    flex-direction:column;
+}
+
+.chat-header{
+    height:70px;
+    min-height:70px;
+    background:#0D1D32;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:12px 18px;
+    border-bottom:1px solid #263C55;
+}
+
+.chat-header-number{
+     color:white;
+    font-size:15px;
+    font-weight:700;
+}
+
+.chat-messages{
+    flex:1;
+    overflow-y:auto;
+    padding:18px;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.message{
+    max-width:78%;
+    min-height:44px;
+    display:flex;
+    align-items:center;
+    padding:12px 16px;
+    border-radius:16px;
+    font-size:13px;
+    line-height:1.4;
+    word-wrap:break-word;
+}
+
+.message.received{
+    align-self:flex-start;
+    background:#0D1D32;
+    color:white;
+    border-bottom-left-radius:4px;
+}
+
+.message.sent{
+    align-self:flex-end;
+    min-height:48px;
+    padding:14px 18px;
+    background:var(--amber);
+    color:var(--ink);
+    border-bottom-right-radius:4px;
+}
+
+.chat-input-area{
+    padding:10px 12px;
+    background:#0D1D32;
+    border-top:1px solid #263C55;
+    display:flex;
+    gap:8px;
+    align-items:center;
+}
+
+.chat-input{
+    flex:1;
+    min-width:0;
+    padding:12px 14px;
+    border:none;
+    outline:none;
+    border-radius:30px;
+    background:#071426;
+    border:1px solid #263C55;
+    color:white;
+    font-size:13px;
+}
+
+.chat-send{
+    width:44px;
+    height:44px;
+    border:none;
+    border-radius:50%;
+    background:var(--amber);
+    color:var(--ink);
+    cursor:pointer;
+    flex-shrink:0;
+}
+
+/* TEAM */
+
+.team-row{
+    margin:0 24px 12px;
+    padding:14px 16px;
+    background:#0D1D32;
+    border:1px solid #263C55;
+    border-radius:16px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.team-row.zone-one{
+    justify-content:center;
+    text-align:center;
+    width:calc(100% - 48px);
+    max-width:460px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.team-row.zone-one .team-info{
+    flex:none;
+}
+
+.team-info{
+    flex:1;
+}
+
+.m-name{
+    margin:0 0 4px;
+    color:#FFFFFF;
+    font-size:14px;
+    font-weight:700;
+}
+
+.m-role{
+    margin:0;
+    color:#7890AC;
+    font-size:12px;
+}
+
+.team-tag{
+    background:#1D5127;
+    color:#E5F0E6;
+    border:1px solid #376C3D;
+    border-radius:40px;
+    padding:6px 10px;
+    font-size:10px;
+    font-weight:700;
+}
+
+.avatar{
+    width:42px;
+    height:42px;
+    min-width:42px;
+    background:#071426;
+    border:1px solid #1D3A58;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#FFE28A;
+    font-size:14px;
+    font-weight:700;
+    position:relative;
+}
+
+.dot-status{
+    position:absolute;
+    width:9px;
+    height:9px;
+    border-radius:50%;
+    right:0;
+    bottom:1px;
+    border:2px solid #0D1D32;
+}
+
+.dot-on{
+    background:#13D15B;
+}
+
+.dot-idle{
+    background:#E8A33D;
+}
+
+.dot-off{
+    background:#7184A0;
+}
+
+/* COMMISSION */
+
+.commission-section{
+    width:50%;
+    max-width:1280px;
+    margin:auto;
+    padding:24px;
+    background:#0D1D32;
+    border:1px solid #263C55;
+    border-radius:28px;
+}
+
+.commission-title{
+    margin:0;
+    color:#FFFFFF;
+    font-size:28px;
+}
+
+.commission-subtitle{
+    margin:20px 0 26px;
+    color:#7890AC;
+    font-size:20px;
+}
+
+.commission-cards{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+}
+
+.commission-card{
+    min-height:408px;
+    padding:32px;
+    border-radius:25px;
+    position:relative;
+    overflow:hidden;
+}
+
+.commission-card.l1{
+    grid-column:2;
+    background:#037575;
+    border:1px solid #3a1603;
+    box-shadow:
+        0 0 12px rgba(238,204,190,.7),
+        0 0 35px rgba(54,48,45,.3);
+}
+
+.level{
+    height:100px;
+    border-radius:24px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:28px;
+    font-weight:700;
+    color:#171717;
+    margin-bottom:20px;
+}
+
+.l1 .level{
+    background:linear-gradient(180deg,#FF6344 0%,#FF2600 100%);
+    border:5px solid #FF8B19;
+    box-shadow:
+        0 0 10px #FF6B00,
+        inset 0 4px 8px rgba(255,255,255,.35);
+}
+
+.commission-card h2{
+    margin:0 0 14px;
+    color:#FFFFFF;
+    font-size:25px;
+}
+
+.commission-card p{
+    margin:0;
+    color:#FFFFFF;
+    font-size:20px;
+    line-height:1.6;
+}
+
+.rate{
+    margin-top:20px;
+    color:#FFFFFF;
+    font-size:17px;
+}
+
+.percentage{
+    margin-top:10px;
+    font-size:36px;
+    font-weight:700;
+}
+
+.l1 .percentage{
+    color:#FF9A9A;
+}
+
+/* WALLET */
+
+.wallet-title{
+    margin:24px;
+    color:var(--ink);
+    font-size:22px;
+}
+
+.wallet-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+    margin:0 24px;
+}
+
+.wallet-card{
+    background:#14171F;
+    border-radius:16px;
+    padding:18px 14px;
+    min-height:85px;
+    position:relative;
+}
+
+.wallet-card-value{
+    color:#E8A33D;
+    font-size:20px;
+    font-weight:700;
+    margin-bottom:5px;
+}
+
+.wallet-card-label{
+    color:#D9D9D9;
+    font-size:11px;
+}
+
+/* RECHARGE ONLY IN WALLET */
+
+.wallet-button{
+    margin-top:6px;
+    margin-left:auto;
+    display:block;
+    width:auto;
+    padding:8px 16px;
+    border:none;
+    border-radius:50px;
+    background:var(--amber);
+    color:var(--ink);
+    font-size:12px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+/* ACCOUNT SUMMARY */
+
+.account-summary{
+    width:calc(100% - 48px);
+    background:#14171F;
+    border-radius:16px;
+    padding:18px;
+    margin:30px 24px 0;
+}
+
+.account-summary h2{
+    margin-top:0;
+}
+
+.record-row{
+    margin:12px 0 0;
+    padding:16px;
+    background:#0D1D32;
+    border:1px solid #263C55;
+    border-radius:16px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    cursor:pointer;
+}
+
+.record-row span{
+    flex:1;
+    color:gold;
+}
+
+.record-row i{
+    color:wheat;
+}
+
+/* RECORD / METHOD PAGES */
+
+.subpage{
+    width:460px;
+    max-width:calc(100% - 30px);
+    margin:auto;
+}
+
+.subpage-header{
+    margin:0 0 18px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.subpage-title{
+    color:var(--ink);
+    font-size:20px;
+    font-weight:700;
+}
+
+.record-box{
+    background:#0D1D32;
+    border:1px solid #263C55;
+    border-radius:20px;
+    padding:24px;
+}
+
+.record-box h3{
+    color:#FFE28A;
+}
+
+.record-box p{
+    color:#7890AC;
+}
+
+/* ME */
+
+.me-title{
+    margin:24px;
+    color:var(--ink);
+    font-size:22px;
+}
+
+.profile-card{
+    margin:0 24px 18px;
+    padding:20px;
+    background:#0D1D32;
+    border:1px solid #263C55;
+    border-radius:20px;
+    display:flex;
+    align-items:center;
+    gap:14px;
+}
+
+.p-name{
+    margin:0;
+    color:#FFFFFF;
+    font-size:16px;
+    font-weight:700;
+}
+
+.settings-list{
+    margin:0 24px;
+    background:#0D1D32;
+    border:1px solid #263C55;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.settings-row{
+    min-height:55px;
+    padding:0 16px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    color:#FFFFFF;
+    font-size:13px;
+    border-bottom:1px solid #263C55;
+    cursor:pointer;
+}
+
+.settings-row:last-child{
+    border-bottom:none;
+}
+
+.settings-row i:first-child{
+    width:18px;
+    color:var(--amber);
+}
+
+.settings-row i:last-child{
+    margin-left:auto;
+    color:#7890AC;
+}
+
+/* SUBPAGES */
+
+.form-card{
+    margin:0 24px 18px;
+    padding:18px;
+    background:#0D1D32;
+    border:1px solid #263C55;
+    border-radius:20px;
+}
+
+.form-group{
+    margin-bottom:14px;
+}
+
+.form-group label{
+    display:block;
+    color:#7890AC;
+    font-size:11px;
+    margin-bottom:6px;
+}
+
+.form-group input{
+    width:100%;
+    background:#071426;
+    border:1px solid #263C55;
+    border-radius:12px;
+    padding:12px 14px;
+    color:#FFFFFF;
+    font-size:13px;
+}
+
+.save-btn{
+    width:calc(100% - 48px);
+    margin:0 24px 18px;
+    padding:15px;
+    border:none;
+    border-radius:40px;
+    background:var(--amber);
+    color:var(--ink);
+    font-size:15px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.help-option{
+    margin:0 24px 12px;
+    padding:16px;
+    background:#0D1D32;
+    border:1px solid #263C55;
+    border-radius:16px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    color:#FFFFFF;
+    font-size:13px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.help-option i:first-child{
+    color:var(--amber);
+}
+
+.help-option i:last-child{
+    margin-left:auto;
+    color:#7890AC;
+}
+
+
+/* COMMUNITY SCREEN SIZE */
+#screen-community .subpage{width:calc(100% - 48px);max-width:none;}
+#screen-community .record-box{width:100%;}
+#screen-community .community-upload textarea{min-height:110px;height:110px;}
+
+.chat-user-search{margin:0 24px 14px;display:flex;gap:8px;}
+.chat-user-search input{flex:1;min-width:0;padding:12px 14px;border:1px solid #263C55;border-radius:30px;background:#071426;color:white;outline:none;}
+.chat-user-search button{padding:12px 16px;border:none;border-radius:30px;background:var(--amber);color:var(--ink);font-weight:700;cursor:pointer;}
+
+/* COMMUNITY */
+
+.community-upload{
+    background:#071426;
+    border:1px solid #263C55;
+    border-radius:16px;
+    padding:16px;
+}
+
+.community-upload label{
+    display:block;
+    color:#7890AC;
+    font-size:11px;
+    margin-bottom:7px;
+}
+
+.community-upload input[type="file"]{
+    width:100%;
+    color:#7890AC;
+    margin-bottom:12px;
+}
+
+.community-upload textarea{
+    width:100%;
+    min-height:80px;
+    resize:vertical;
+    background:#0D1D32;
+    border:1px solid #263C55;
+    border-radius:12px;
+    padding:12px;
+    color:white;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+.community-submit{
+    width:100%;
+    margin-top:12px;
+    padding:12px;
+    border:none;
+    border-radius:40px;
+    background:var(--amber);
+    color:var(--ink);
+    font-weight:700;
+    cursor:pointer;
+}
+
+.community-posts{
+    margin-top:14px;
+}
+
+.community-post{
+    display:flex;
+    gap:10px;
+    align-items:flex-start;
+    background:#071426;
+    border:1px solid #263C55;
+    border-radius:14px;
+    padding:10px;
+    margin-bottom:10px;
+}
+
+.community-post-avatar{
+    width:34px;
+    height:34px;
+    min-width:34px;
+    border-radius:50%;
+    background:#0D1D32;
+    border:1px solid #263C55;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#FFE28A;
+    font-size:12px;
+}
+
+.community-post-content{
+    flex:1;
+    min-width:0;
+}
+
+.community-number{
+    color:#FFFFFF;
+    font-size:11px;
+    font-weight:700;
+    margin-bottom:4px;
+}
+
+.community-comment{
+    color:#7890AC;
+    font-size:11px;
+    margin:0 0 7px;
+    line-height:1.4;
+}
+
+.community-image{
+    display:block;
+    width:110px;
+    height:75px;
+    object-fit:cover;
+    border-radius:9px;
+    border:1px solid #263C55;
+    cursor:pointer;
+}
+
+/* REVIEW */
+
+.review-box{
+    margin:0 24px 18px;
+    padding:18px;
+    background:#0D1D32;
+    border:1px solid #263C55;
+    border-radius:20px;
+}
+
+.review-box h3{
+    color:#FFE28A;
+    margin-top:0;
+}
+
+.review-box p{
+    color:#7890AC;
+    font-size:13px;
+}
+
+.review-box textarea{
+    width:100%;
+    min-height:120px;
+    resize:vertical;
+    background:#071426;
+    border:1px solid #263C55;
+    border-radius:12px;
+    padding:12px;
+    color:white;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+
+
+.review-message{
+    display:none;
+    margin-top:12px;
+    padding:12px;
+    border-radius:12px;
+    background:#1D5127;
+    border:1px solid #376C3D;
+    color:#E5F0E6;
+    font-size:12px;
+}
+
+/* PAYMENT DETAIL */
+
+.payment-detail{
+    background:#071426;
+    border:1px solid #263C55;
+    border-radius:16px;
+    padding:18px;
+}
+
+.payment-detail h3{
+    color:#FFE28A;
+    margin-top:0;
+}
+
+.payment-detail p{
+    color:#7890AC;
+    font-size:12px;
+}
+
+.payment-detail label{
+    display:block;
+    color:#7890AC;
+    font-size:11px;
+    margin:12px 0 6px;
+}
+
+.payment-detail input,
+.payment-detail select{
+    width:100%;
+    padding:12px;
+    background:#0D1D32;
+    border:1px solid #263C55;
+    border-radius:12px;
+    color:white;
+}
+
+.payment-detail .continue-btn{
+    width:100%;
+    margin-top:16px;
+    padding:12px;
+    border:none;
+    border-radius:40px;
+    background:var(--amber);
+    color:var(--ink);
+    font-weight:700;
+    cursor:pointer;
+}
+
+/* MODAL */
+
+.modal-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.55);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:200;
+    padding:24px;
+}
+
+.modal-box{
+    background:var(--paper);
+    border-radius:20px;
+    padding:24px;
+    max-width:320px;
+    width:100%;
+    text-align:center;
+}
+
+.modal-box h3{
+    margin:0 0 8px;
+}
+
+.modal-box p{
+    color:var(--muted);
+}
+
+.modal-actions{
+    display:flex;
+    gap:10px;
+}
+
+.modal-btn{
+    flex:1;
+    padding:12px;
+    border-radius:40px;
+    border:none;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.modal-btn.cancel{
+    background:var(--paper-dim);
+}
+
+.modal-btn.confirm{
+    background:var(--danger);
+    color:white;
+}
+
+/* CHAT MESSAGE ACTIONS */
+.message-wrap{max-width:78%;display:flex;flex-direction:column;gap:4px;position:relative;}
+.message-wrap.sent-wrap{align-self:flex-end;align-items:flex-end;}
+.message-wrap.received-wrap{align-self:flex-start;align-items:flex-start;}
+.message-actions{display:none;gap:5px;position:absolute;right:0;top:100%;z-index:20;background:#071426;border:1px solid #263C55;border-radius:12px;padding:6px;}
+.message-actions.show{display:flex;}
+.message-action-btn{border:none;background:#071426;color:#7890AC;border:1px solid #263C55;border-radius:20px;padding:4px 8px;font-size:10px;cursor:pointer;}
+.message-action-btn:hover{color:var(--amber);border-color:var(--amber);}
+.chat-empty{margin:24px;color:#7890AC;text-align:center;font-size:13px;}
+.unread-mark{width:8px;height:8px;background:var(--amber);border-radius:50%;display:inline-block;margin-left:6px;vertical-align:middle;}
+.message-unread-mark{color:var(--amber);font-size:9px;margin-left:5px;}
+
+/* MOBILE */
+
+@media(max-width:850px){
+
+    .commission-section{
+        width:calc(100% - 30px);
+    }
+
+    .commission-cards{
+        grid-template-columns:1fr;
+    }
+
+    .commission-card.l1{
+        grid-column:auto;
+    }
+}
+
+@media(max-width:700px){
+
+    .stats-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .wallet-grid{
+        grid-template-columns:1fr;
+    }
+
+    .picture-row{
+        flex-direction:row;
+    }
+
+    .picture-row img{
+        width:110px;
+    }
+}
+
+@media(max-width:500px){
+
+    .stats-grid{
+        grid-template-columns:1fr;
+    }
+
+    .outer-box,
+    .payment-box,
+    .subpage{
+        width:calc(100% - 20px);
+    }
+
+    .picture-row img{
+        width:95px;
+        height:180px;
+    }
+
+    .text-box{
+        padding:14px;
+    }
+
+    .text-box h2{
+        font-size:16px;
+    }
+
+    .text-box h4{
+        font-size:12px;
+    }
+
+    .commission-section{
+        width:calc(100% - 20px);
+    }
+
+    .commission-card{
+        padding:24px;
+    }
+
+}
+
+
+
+/* CENTER ZONE 1 INSIDE THE COMMISSION BOX */
+.commission-cards{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+.commission-card.l1{
+    width:100%;
+    max-width:360px;
+}
+
+
+/* ACCOUNT FINANCE DETAILS */
+.finance-record{
+    margin:10px 0;
+    padding:12px 14px;
+    background:#071426;
+    border:1px solid #263C55;
+    border-radius:12px;
+}
+.finance-record strong{display:block;color:#FFE28A;font-size:13px;margin-bottom:5px;}
+.finance-record span{display:block;color:#7890AC;font-size:11px;line-height:1.5;}
+.finance-empty{color:#7890AC !important;}
+
+/* LOGIN / SIGN UP */
+.auth-screen{min-height:calc(100vh - 40px);display:flex;align-items:center;justify-content:center;padding:30px 20px 120px}.auth-box{width:460px;max-width:100%;background:#0D1D32;border:1px solid #263C55;border-radius:22px;padding:24px}.auth-logo{text-align:center;color:var(--amber);font-size:30px;margin-bottom:4px}.auth-title{text-align:center;color:white;margin:0 0 6px;font-size:24px}.auth-subtitle{text-align:center;color:#7890AC;font-size:12px;margin:0 0 22px}.auth-group{margin-bottom:14px}.auth-group label{display:block;color:#7890AC;font-size:11px;margin-bottom:6px}.auth-group input{width:100%;background:#071426;border:1px solid #263C55;border-radius:12px;padding:12px 14px;color:#FFF;font-size:13px;outline:none}.auth-button{width:100%;padding:13px;margin-top:4px;border:none;border-radius:40px;background:var(--amber);color:var(--ink);font-size:14px;font-weight:700;cursor:pointer}.auth-switch{text-align:center;color:#7890AC;font-size:12px;margin:18px 0 0}.auth-switch button{border:none;background:none;color:var(--amber);font-weight:700;cursor:pointer;padding:0}.auth-error{display:none;margin-top:12px;padding:10px;border-radius:12px;background:var(--danger-soft);color:var(--danger);font-size:12px}
+</style>
+</head>
+
+<body>
+
+<div class="nexa-text">
+
+<div class="logo">
+<span><i class="fas fa-robot"></i></span>
+</div>
+
+<div class="nexa-name">NEXA</div>
+<div class="nexa-sub">AI HUB</div>
+
+<div class="divider"></div>
+
+</div>
+
+
+<!-- LOGIN -->
+<div class="screen auth-screen" id="screen-login"><div class="auth-box"><div class="auth-logo"><i class="fas fa-robot"></i></div><h1 class="auth-title">Login</h1><p class="auth-subtitle">Login to your NEXA account</p><div class="auth-group"><label>Phone Number</label><input type="tel" id="login-phone" placeholder="+256 " inputmode="numeric" oninput="fix256Number(this)" onkeydown="protect256(event,this)" maxlength="14"></div><div class="auth-group"><label>Password</label><input type="password" id="login-password" placeholder="Enter password"></div><button class="auth-button" id="login-button">Login</button><p class="auth-switch">Don't have an account? <button type="button" id="go-signup">Sign Up</button></p><p class="auth-error" id="login-message"></p></div></div>
+
+<!-- SIGN UP -->
+<div class="screen auth-screen" id="screen-signup" hidden><div class="auth-box"><div class="auth-logo"><i class="fas fa-robot"></i></div><h1 class="auth-title">Sign Up</h1><p class="auth-subtitle">Create your NEXA account</p><div class="auth-group"><label>Phone Number</label><input type="tel" id="signup-phone" placeholder="+256 " inputmode="numeric" oninput="fix256Number(this)" onkeydown="protect256(event,this)" maxlength="14"></div><div class="auth-group"><label>Password</label><input type="password" id="signup-password" placeholder="Create password"></div><div class="auth-group"><label>Confirm Password</label><input type="password" id="signup-confirm-password" placeholder="Confirm password"></div><button class="auth-button" id="signup-button">Sign Up</button><p class="auth-switch">Already have an account? <button type="button" id="go-login">Login</button></p><p class="auth-error" id="signup-message"></p></div></div>
+
+<!-- HOME -->
+
+<div class="screen" id="screen-home" hidden>
+
+<div class="stats-grid">
+
+<div class="stat-card">
+<div class="stat-value" id="home-deposit-total">UGX. 0</div>
+<div class="stat-label">Deposit details</div>
+</div>
+
+<div class="stat-card">
+<div class="stat-value" id="home-available-balance">UGX. 0</div>
+<div class="stat-label">Available Balance</div>
+</div>
+
+<div class="stat-card">
+<div class="stat-value" id="home-ai-income">UGX. 0</div>
+<div class="stat-label">AI Income</div>
+</div>
+
+<div class="stat-card">
+
+<div class="stat-value">UGX. 0</div>
+
+<div class="stat-label">
+Today's earnings
+</div>
+
+<!-- WITHDRAW IS ONLY HERE -->
+
+<button class="home-withdraw"
+data-open="withdraw-method">
+Withdraw
+</button>
+
+</div>
+
+<div class="stat-card">
+<div class="stat-value" id="home-team-count">0</div>
+<div class="stat-label">Team Count</div>
+</div>
+
+<div class="stat-card">
+<div class="stat-value" id="home-team-income">UGX. 0</div>
+<div class="stat-label">Team income</div>
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ORDER -->
+
+<div class="screen" id="screen-order" hidden>
+
+<div class="column">
+
+<script>
+const products = [
+["NX 1","C:\\Users\\Burundi Store\\Desktop\\NEW\\pictures\\NX0.jpeg","UGX. 15,000","UGX. 2,500","10 Days","UGX. 25,000"],
+["NX 2","C:\\Users\\Burundi Store\\Desktop\\NEW\\pictures\\NX1.jpeg","UGX. 60,000","UGX. 10,000","30 Days","UGX. 100,000"],
+["NX 3","C:\\Users\\Burundi Store\\Desktop\\NEW\\pictures\\NX2.jpeg","UGX. 100,000","UGX. 21,000","30 Days","UGX. 210,000"],
+["NX 4","C:\\Users\\Burundi Store\\Desktop\\NEW\\pictures\\NX3.jpeg","UGX. 300,000","UGX. 52,000","100 Days","UGX. 520,000"],
+["NX 5","C:\\Users\\Burundi Store\\Desktop\\NEW\\pictures\\NX4.jpeg","UGX. 700,000","UGX. 150,000","100 Days","UGX. 1,500,000"],
+["NX 6","C:\\Users\\Burundi Store\\Desktop\\NEW\\pictures\\NX5.jpeg","UGX. 1,000,000","UGX. 320,000","100 Days","UGX. 3,200,000"],
+["NX 7","C:\\Users\\Burundi Store\\Desktop\\NEW\\pictures\\NX6.jpeg","UGX. 1,500,000","UGX. 500,000","100 Days","UGX. 5,000,000"],
+["NX 8","C:\\Users\\Burundi Store\\Desktop\\NEW\\pictures\\NX7.jpeg","UGX. 2,500,000","UGX. 790,000","100 Days","UGX. 7,900,000"],
+["NX 9","C:\\Users\\Burundi Store\\Desktop\\NEW\\pictures\\NX8.jpeg","UGX. 4,000,000","UGX. 1,200,000","180 Days","UGX. 12,000,000"],
+["NX 10","C:\\Users\\Burundi Store\\Desktop\\NEW\\pictures\\NX9.jpeg","UGX. 7,000,000","UGX. 2,000,000","180 Days","UGX. 20,000,000"],
+["NX 11","C:\\Users\\Burundi Store\\Desktop\\NEW\\pictures\\NX10.jpeg","UGX. 10,000,000","UGX. 5,800,000","180 Days","UGX. 58,000,000"]
+];
+
+products.forEach(p => {
+
+document.write(`
+<div class="outer-box">
+
+<h1 class="title" style="color:gold;">${p[0]}</h1>
+
+<div class="picture-row">
+
+<img src="${p[1]}">
+
+<div class="text-box">
+
+<h2>Price: ${p[2]}</h2>
+
+<h4>
+Daily Income: ${p[3]}<br>
+Cycle: ${p[4]}<br>
+Total Income: ${p[5]}
+</h4>
+
+<button class="purchase-btn"
+data-product="${p[0]}"
+data-price="${p[2]}">
+Purchase
+</button>
+
+</div>
+</div>
+</div>
+`);
+
+});
+
+</script>
+
+</div>
+</div>
+
+
+<!-- PAYMENT -->
+
+<div class="screen" id="screen-payment" hidden>
+
+<div class="payment-box">
+
+<div class="payment-header">
+
+<button class="back-btn" data-back="order">
+<i class="fas fa-arrow-left"></i>
+</button>
+
+<h2 class="payment-title">Payment Mode</h2>
+
+</div>
+
+<div class="payment-item">
+
+<h3 id="payment-product">NX 1</h3>
+
+<p>Amount to pay:</p>
+
+<h2 id="payment-price" style="color:#FFE28A;">
+UGX. 15,000
+</h2>
+
+</div>
+
+<div class="payment-item">
+
+<h3>Choose Payment Method</h3>
+
+<button class="payment-method"
+data-open="mobile-money-payment">
+
+<i class="fas fa-mobile-screen-button"></i>
+Mobile Money
+</button>
+
+<p style="color:#FFE28A;margin:12px 0 0;text-align:center;font-weight:700;">
+Send payment to: +256750839608
+</p>
+
+<button class="payment-method"
+data-open="bank-card-payment">
+
+<i class="fas fa-credit-card"></i>
+Bank / Card
+</button>
+
+</div>
+
+</div>
+</div>
+
+
+<!-- MOBILE MONEY PAYMENT -->
+
+<div class="screen" id="screen-mobile-money-payment" hidden>
+
+<div class="subpage">
+
+<div class="subpage-header">
+
+<button class="back-btn" data-back="payment">
+<i class="fas fa-arrow-left"></i>
+</button>
+
+<span class="subpage-title">
+Mobile Money Payment
+</span>
+
+</div>
+
+<div class="payment-detail">
+
+<h3>Mobile Money</h3>
+
+<p>Enter the important payment details below.</p>
+
+<label>Mobile Number</label>
+
+<input
+type="tel"
+value="+256 "
+inputmode="numeric"
+oninput="fix256Number(this)"
+onkeydown="protect256(event,this)"
+maxlength="14">
+
+<label>Network</label>
+
+<select>
+<option>Select network</option>
+<option>MTN</option>
+<option>Airtel</option>
+</select>
+
+<label>Amount</label>
+
+<input
+type="text"
+id="mobile-payment-amount"
+inputmode="numeric"
+oninput="formatMoneyInput(this)"
+value="15,000">
+
+<button class="continue-btn">
+Continue Payment
+</button>
+
+</div>
+</div>
+</div>
+
+
+<!-- BANK PAYMENT -->
+
+<div class="screen" id="screen-bank-card-payment" hidden>
+
+<div class="subpage">
+
+<div class="subpage-header">
+
+<button class="back-btn" data-back="payment">
+<i class="fas fa-arrow-left"></i>
+</button>
+
+<span class="subpage-title">
+Bank / Card Payment
+</span>
+
+</div>
+
+<div class="payment-detail">
+
+<h3>Bank / Card</h3>
+
+<p>Enter the important payment details below.</p>
+
+<label>Cardholder Name</label>
+<input type="text" placeholder="Full name">
+
+<label>Card Number</label>
+
+<input type="text"
+inputmode="numeric"
+oninput="numbersOnly(this)"
+placeholder="Card number">
+
+<label>Expiry Date</label>
+<input type="text" placeholder="MM / YY">
+
+<label>CVV</label>
+
+<input type="password"
+inputmode="numeric"
+oninput="numbersOnly(this)"
+placeholder="CVV">
+
+<label>Amount</label>
+
+<input
+type="text"
+id="bank-payment-amount"
+inputmode="numeric"
+oninput="formatMoneyInput(this)"
+value="15,000">
+
+<button class="continue-btn">
+Continue Payment
+</button>
+
+</div>
+</div>
+</div>
+
+
+<!-- CHAT LIST -->
+
+<div class="screen" id="screen-chat" hidden>
+
+<h2 class="section-title">Messages</h2>
+<div class="chat-user-search">
+<input type="tel" id="new-chat-number" placeholder="+256 " inputmode="numeric" oninput="fix256Number(this)" onkeydown="protect256(event,this)" maxlength="14">
+<button id="start-chat">Chat</button>
+</div>
+
+<div id="chat-list"></div>
+
+</div>
+
+
+<!-- FULL CHAT -->
+
+<div class="screen" id="screen-conversation" hidden>
+
+<div class="chat-full">
+
+<div class="chat-header">
+
+<button class="back-btn" id="chat-back">
+<i class="fas fa-arrow-left"></i>
+</button>
+
+<div>
+
+<div class="chat-header-number"
+id="conversation-number">
++256 7XX53XX4X
+</div>
+
+</div>
+
+</div>
+
+<div class="chat-messages" id="chat-messages">
+
+</div>
+
+<div class="chat-input-area">
+
+<input
+class="chat-input"
+id="chat-input"
+type="text"
+placeholder="Write a message...">
+
+<button class="chat-send" id="chat-send">
+
+<i class="fas fa-paper-plane"></i>
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- TEAM -->
+    
+<div class="screen" id="screen-team" hidden>
+
+
+<!--
+<h2 class="section-title">Team</h2>
+
+<div class="team-row zone-one">
+
+<div class="avatar">
+<i class="fas fa-user"></i>
+<span class="dot-status dot-on"></span>
+</div>
+
+<div class="team-info">
+<p class="m-name">+257 7XX77XX9X</p>
+<p class="m-role">Zone 1</p>
+</div>
+
+<span class="team-tag">Online</span>
+
+</div>
+
+<div class="team-row">
+
+<div class="avatar">
+<i class="fas fa-user"></i>
+<span class="dot-status dot-on"></span>
+</div>
+
+<div class="team-info">
+<p class="m-name">+256 7XX32XX1X</p>
+<p class="m-role">Zone 3</p>
+</div>
+
+<span class="team-tag">Online</span>
+
+</div>
+
+<div class="team-row">
+
+<div class="avatar">
+<i class="fas fa-user"></i>
+<span class="dot-status dot-idle"></span>
+</div>
+
+<div class="team-info">
+<p class="m-name">+256 7XX82XX7X</p>
+<p class="m-role">Zone 1</p>
+</div>
+
+<span class="team-tag">Online</span>
+
+</div>
+
+<div class="team-row">
+
+<div class="avatar">
+<i class="fas fa-user"></i>
+<span class="dot-status dot-off"></span>
+</div>
+
+<div class="team-info">
+<p class="m-name">+256 7XX19XX8X</p>
+<p class="m-role">Zone 3</p>
+</div>
+
+<span class="team-tag">Offline</span>
+
+</div>
+-->
+<section class="commission-section">
+
+<h1 class="commission-title">
+Commission Structure
+</h1>
+
+<p class="commission-subtitle">
+Each level should be readable in two seconds so users can instantly understand the benefit of sharing.
+</p>
+
+<div class="commission-cards">
+
+<div class="commission-card l1">
+
+<div class="level">Zone 1</div>
+
+<h2>First level</h2>
+
+<p>
+Instant commission on deposits made by your personal referrals.
+</p>
+
+<div class="rate">Rate</div>
+
+<div class="percentage">10%</div>
+
+</div>
+
+</div>
+
+</section>
+
+</div>
+
+
+<!-- WALLET -->
+
+<div class="screen" id="screen-wallet" hidden>
+
+<h2 class="wallet-title">Wallet</h2>
+
+<div class="wallet-grid">
+
+<div class="wallet-card">
+
+<div class="wallet-card-value" id="wallet-available-balance">
+UGX. 0
+</div>
+
+<div class="wallet-card-label">
+Available Balance
+</div>
+
+</div>
+
+<div class="wallet-card">
+
+<div class="wallet-card-value" id="wallet-ai-income">
+UGX. 0
+</div>
+
+<div class="wallet-card-label">
+AI Income
+</div>
+
+</div>
+
+<div class="wallet-card">
+
+<div class="wallet-card-value">
+UGX. 0
+</div>
+
+<p style="color:whitesmoke;">
+Withdraw starts at 10,000 UGX
+</p>
+
+</div>
+
+<div class="wallet-card">
+
+<div class="wallet-card-value" id="wallet-total-earnings">
+UGX. 0
+</div>
+
+<div class="wallet-card-label">
+Total Earnings
+</div>
+
+<!-- RECHARGE ONLY IN WALLET -->
+
+<button class="wallet-button"
+data-open="recharge-method">
+Recharge
+</button>
+
+</div>
+
+</div>
+
+<!-- WITHDRAW RECORD IS STILL HERE -->
+
+<div class="account-summary">
+
+<h2 style="color:white;">
+Account summary
+</h2>
+
+<div class="record-row" data-open="deposit">
+
+<i class="fas fa-coins"></i>
+
+<span>
+Deposit Record
+</span>
+
+<i class="fas fa-chevron-right"></i>
+
+</div>
+
+<div class="record-row" data-open="withdraw">
+
+<i class="fas fa-wallet"></i>
+
+<span>
+Withdraw Record
+</span>
+
+<i class="fas fa-chevron-right"></i>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- DEPOSIT RECORD -->
+
+<div class="screen" id="screen-deposit" hidden>
+
+<div class="subpage">
+
+<div class="subpage-header">
+
+<button class="back-btn" data-back="wallet">
+<i class="fas fa-arrow-left"></i>
+</button>
+
+<span class="subpage-title">
+Deposit Record
+</span>
+
+</div>
+
+<div class="record-box">
+
+<h3>Deposit Records</h3>
+
+<div id="deposit-record-list">
+<p class="finance-empty">THERE ARE NO DEPOSIT RECORDS YET</p>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- WITHDRAW RECORD -->
+
+<div class="screen" id="screen-withdraw" hidden>
+
+<div class="subpage">
+
+<div class="subpage-header">
+
+<button class="back-btn" data-back="wallet">
+<i class="fas fa-arrow-left"></i>
+</button>
+
+<span class="subpage-title">
+Withdraw Record
+</span>
+
+</div>
+
+<div class="record-box">
+
+<h3>
+Withdraw Records
+</h3>
+
+<div id="withdraw-record-list">
+<p class="finance-empty">THERE ARE NO WITHDRAW RECORDS YET</p>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- WITHDRAW METHOD -->
+
+<div class="screen" id="screen-withdraw-method" hidden>
+
+<div class="subpage">
+
+<div class="subpage-header">
+
+<button class="back-btn" data-back="home">
+<i class="fas fa-arrow-left"></i>
+</button>
+
+<span class="subpage-title">
+Withdraw
+</span>
+
+</div>
+
+<div class="record-box">
+
+<h3>
+Withdraw Method
+</h3>
+
+<p>
+Choose how you want to withdraw your money.
+</p>
+
+<button class="payment-method"
+data-open="withdraw-mobile-money">
+
+<i class="fas fa-mobile-screen-button"></i>
+Mobile Money
+</button>
+
+<button class="payment-method"
+data-open="withdraw-bank">
+
+<i class="fas fa-building-columns"></i>
+Bank Account
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- WITHDRAW MOBILE MONEY -->
+
+<div class="screen" id="screen-withdraw-mobile-money" hidden>
+
+<div class="subpage">
+
+<div class="subpage-header">
+
+<button class="back-btn" data-back="withdraw-method">
+<i class="fas fa-arrow-left"></i>
+</button>
+
+<span class="subpage-title">
+Mobile Money Withdrawal
+</span>
+
+</div>
+
+<div class="payment-detail">
+
+<h3>Mobile Money</h3>
+
+<p>
+Enter the important withdrawal details.
+</p>
+
+<label>Mobile Number</label>
+
+<input
+type="tel"
+value="+256 "
+inputmode="numeric"
+oninput="fix256Number(this)"
+onkeydown="protect256(event,this)"
+maxlength="14">
+
+<label>Network</label>
+
+<select>
+<option>Select network</option>
+<option>MTN</option>
+<option>Airtel</option>
+</select>
+
+<label>Amount</label>
+
+<input
+type="text"
+id="withdraw-mobile-amount"
+placeholder="Enter amount"
+inputmode="numeric"
+oninput="formatMoneyInput(this)">
+
+<button class="continue-btn">
+Continue Withdrawal
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- WITHDRAW BANK -->
+
+<div class="screen" id="screen-withdraw-bank" hidden>
+
+<div class="subpage">
+
+<div class="subpage-header">
+
+<button class="back-btn" data-back="withdraw-method">
+<i class="fas fa-arrow-left"></i>
+</button>
+
+<span class="subpage-title">
+Bank Withdrawal
+</span>
+
+</div>
+
+<div class="payment-detail">
+
+<h3>Bank Account</h3>
+
+<p>
+Enter the important bank details.
+</p>
+
+<label>Account Name</label>
+
+<input type="text" placeholder="Full name">
+
+<label>Bank Name</label>
+
+<input type="text" placeholder="Bank name">
+
+<label>Account Number</label>
+
+<input type="text"
+inputmode="numeric"
+oninput="numbersOnly(this)"
+placeholder="Account number">
+
+<label>Amount</label>
+
+<input type="text"
+id="withdraw-bank-amount"
+placeholder="Enter amount"
+inputmode="numeric"
+oninput="formatMoneyInput(this)">
+
+<button class="continue-btn">
+Continue Withdrawal
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- RECHARGE METHOD -->
+
+<div class="screen" id="screen-recharge-method" hidden>
+
+<div class="subpage">
+
+<div class="subpage-header">
+
+<button class="back-btn" data-back="wallet">
+<i class="fas fa-arrow-left"></i>
+</button>
+
+<span class="subpage-title">
+Recharge
+</span>
+
+</div>
+
+<div class="record-box">
+
+<h3>
+Recharge Method
+</h3>
+
+<p>
+Choose how you want to recharge your account.
+</p>
+
+<button class="payment-method"
+data-open="recharge-mobile-money">
+
+<i class="fas fa-mobile-screen-button"></i>
+Mobile Money
+</button>
+
+<button class="payment-method"
+data-open="recharge-bank-card">
+
+<i class="fas fa-credit-card"></i>
+Bank / Card
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- RECHARGE MOBILE MONEY -->
+
+<div class="screen" id="screen-recharge-mobile-money" hidden>
+
+<div class="subpage">
+
+<div class="subpage-header">
+
+<button class="back-btn" data-back="recharge-method">
+<i class="fas fa-arrow-left"></i>
+</button>
+
+<span class="subpage-title">
+Mobile Money Recharge
+</span>
+
+</div>
+
+<div class="payment-detail">
+
+<h3>Mobile Money</h3>
+
+<p>
+Enter the important recharge details.
+</p>
+
+<label>Mobile Number</label>
+
+<input
+type="tel"
+value="+256 "
+inputmode="numeric"
+oninput="fix256Number(this)"
+onkeydown="protect256(event,this)"
+maxlength="14">
+
+<label>Network</label>
+
+<select>
+<option>Select network</option>
+<option>MTN</option>
+<option>Airtel</option>
+</select>
+
+<label>Amount</label>
+
+<input
+type="text"
+id="recharge-mobile-amount"
+placeholder="Enter amount"
+inputmode="numeric"
+oninput="formatMoneyInput(this)">
+
+<button class="continue-btn">
+Continue Recharge
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- RECHARGE BANK -->
+
+<div class="screen" id="screen-recharge-bank-card" hidden>
+
+<div class="subpage">
+
+<div class="subpage-header">
+
+<button class="back-btn" data-back="recharge-method">
+<i class="fas fa-arrow-left"></i>
+</button>
+
+<span class="subpage-title">
+Bank / Card Recharge
+</span>
+
+</div>
+
+<div class="payment-detail">
+
+<h3>Bank / Card</h3>
+
+<p>
+Enter the important recharge details.
+</p>
+
+<label>Cardholder Name</label>
+
+<input type="text" placeholder="Full name">
+
+<label>Card Number</label>
+
+<input type="text"
+inputmode="numeric"
+oninput="numbersOnly(this)"
+placeholder="Card number">
+
+<label>Expiry Date</label>
+
+<input type="text" placeholder="MM / YY">
+
+<label>CVV</label>
+
+<input type="password"
+inputmode="numeric"
+oninput="numbersOnly(this)"
+placeholder="CVV">
+
+<label>Amount</label>
+
+<input type="text"
+id="recharge-bank-amount"
+placeholder="Enter amount"
+inputmode="numeric"
+oninput="formatMoneyInput(this)">
+
+<button class="continue-btn">
+Continue Recharge
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ME -->
+
+<div class="screen" id="screen-me" hidden>
+
+<h2 class="me-title">
+My Profile
+</h2>
+
+<div class="profile-card">
+
+<div class="avatar">
+<i class="fas fa-user"></i>
+</div>
+
+<div>
+
+<p class="p-name">
++256 XXXXXXXXX
+</p>
+
+</div>
+
+</div>
+
+<div class="settings-list">
+
+<div class="settings-row" data-open="privacy">
+
+<i class="fas fa-shield-halved"></i>
+
+<span>
+Privacy & security
+</span>
+
+<i class="fas fa-chevron-right"></i>
+
+</div>
+
+<div class="settings-row" data-open="help">
+
+<i class="fas fa-headset"></i>
+
+<span>
+Help & support
+</span>
+
+<i class="fas fa-chevron-right"></i>
+
+</div>
+
+<div class="settings-row" id="signout-trigger">
+
+<i class="fas fa-arrow-right-from-bracket"></i>
+
+<span>
+Sign out
+</span>
+
+<i class="fas fa-chevron-right"></i>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- PRIVACY -->
+
+<div class="screen" id="screen-privacy" hidden>
+
+<div class="subpage">
+
+<div class="subpage-header">
+
+<button class="back-btn" data-back="me">
+<i class="fas fa-arrow-left"></i>
+</button>
+
+<span class="subpage-title">
+Privacy & security
+</span>
+
+</div>
+
+<div class="help-option" data-open="password">
+
+<i class="fas fa-key"></i>
+
+<span>
+Change password
+</span>
+
+<i class="fas fa-chevron-right"></i>
+
+</div>
+
+<div class="help-option" data-open="edit-number">
+
+<i class="fas fa-phone"></i>
+
+<span>
+Edit number
+</span>
+
+<i class="fas fa-chevron-right"></i>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- PASSWORD -->
+
+<div class="screen" id="screen-password" hidden>
+
+<div class="subpage">
+
+<div class="subpage-header">
+
+<button class="back-btn" data-back="privacy">
+<i class="fas fa-arrow-left"></i>
+</button>
+
+<span class="subpage-title">
+Change password
+</span>
+
+</div>
+
+<div class="form-card">
+
+<div class="form-group">
+<label>Current password</label>
+<input type="password" id="pw-current">
+</div>
+
+<div class="form-group">
+<label>New password</label>
+<input type="password" id="pw-new">
+</div>
+
+<div class="form-group">
+<label>Confirm new password</label>
+<input type="password" id="pw-confirm">
+</div>
+
+</div>
+
+<button class="save-btn" id="pw-save">
+Update password
+</button>
+
+</div>
+
+</div>
+
+
+<!-- EDIT NUMBER -->
+
+<div class="screen" id="screen-edit-number" hidden>
+
+<div class="subpage">
+
+<div class="subpage-header">
+
+<button class="back-btn" data-back="privacy">
+<i class="fas fa-arrow-left"></i>
+</button>
+
+<span class="subpage-title">
+Edit number
+</span>
+
+</div>
+
+<div class="form-card">
+
+<div class="form-group">
+
+<label>
+Current number
+</label>
+
+<input id="edit-current-number"
+type="tel"
+value="+256 "
+inputmode="numeric"
+oninput="fix256Number(this)"
+onkeydown="protect256(event,this)"
+maxlength="14">
+
+</div>
+
+<div class="form-group">
+
+<label>
+New number
+</label>
+
+<input id="edit-new-number"
+type="tel"
+value="+256 "
+inputmode="numeric"
+oninput="fix256Number(this)"
+onkeydown="protect256(event,this)"
+maxlength="14">
+
+</div>
+
+</div>
+
+<button class="save-btn" id="number-save">
+Update number
+</button>
+
+</div>
+
+</div>
+
+
+<!-- HELP -->
+
+<div class="screen" id="screen-help" hidden>
+
+<div class="subpage">
+
+<div class="subpage-header">
+
+<button class="back-btn" data-back="me">
+<i class="fas fa-arrow-left"></i>
+</button>
+
+<span class="subpage-title">
+Help & support
+</span>
+
+</div>
+
+<div class="help-option" id="help-agent">
+
+<i class="fas fa-headset"></i>
+
+<span>
+Talk to an agent
+</span>
+
+<i class="fas fa-chevron-right"></i>
+
+</div>
+
+<div class="help-option" id="help-community">
+
+<i class="fas fa-users"></i>
+
+<span>
+Community Help
+</span>
+
+<i class="fas fa-chevron-right"></i>
+
+</div>
+
+<div class="help-option" id="help-review">
+
+<i class="fas fa-star"></i>
+
+<span>
+Review the app
+</span>
+
+<i class="fas fa-chevron-right"></i>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- COMMUNITY -->
+
+<div class="screen" id="screen-community" hidden>
+
+<div class="subpage">
+
+<div class="subpage-header">
+
+<button class="back-btn" data-back="help">
+<i class="fas fa-arrow-left"></i>
+</button>
+
+<span class="subpage-title">
+Community Help
+</span>
+
+</div>
+
+<div class="record-box">
+
+<h3>
+Ask the Community
+</h3>
+
+<p>
+Upload a picture and write a comment. Other users will be able to view your post.
+</p>
+
+<div class="community-upload">
+
+<label>
+Upload picture
+</label>
+
+<input
+type="file"
+id="community-image"
+accept="image/*">
+
+<label>
+Write a comment
+</label>
+
+<textarea
+id="community-comment"
+placeholder="Write your comment..."></textarea>
+
+<button
+class="community-submit"
+id="community-submit">
+
+Post to Community
+
+</button>
+
+</div>
+
+<div class="community-posts"
+id="community-posts">
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- AGENT -->
+
+<div class="screen" id="screen-agent" hidden>
+
+<div class="subpage">
+
+<div class="subpage-header">
+
+<button class="back-btn" data-back="help">
+<i class="fas fa-arrow-left"></i>
+</button>
+
+<span class="subpage-title">
+Talk to an agent
+</span>
+
+</div>
+
+<div class="record-box">
+
+<h3>
+Need help?
+</h3>
+
+<p>
+Contact us directly on WhatsApp and an agent will assist you.
+</p>
+
+<a href="https://wa.me/256750839608" target="_blank"
+style="display:block;text-align:center;text-decoration:none;
+background:#25D366;color:white;padding:13px;
+border-radius:40px;font-weight:700;">
+
+<i class="fab fa-whatsapp"></i>
+Chat on WhatsApp
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- REVIEW -->
+
+<div class="screen" id="screen-review" hidden>
+
+<div class="subpage">
+
+<div class="subpage-header">
+
+<button class="back-btn" data-back="help">
+<i class="fas fa-arrow-left"></i>
+</button>
+
+<span class="subpage-title">
+Review the app
+</span>
+
+</div>
+
+<div class="review-box">
+
+<h3>
+Reviews
+</h3>
+
+<div id="review-list">
+
+<p>
+No review yet.
+</p>
+
+</div>
+
+<label style="color:#7890AC;font-size:11px;">
+Write your own thoughts
+</label>
+
+<textarea
+id="review-text"
+placeholder="Write your own thoughts about the app..."></textarea>
+
+<button
+class="save-btn"
+id="submit-review"
+style="width:100%;margin:14px 0 0;">
+
+Submit Review
+
+</button>
+
+<p class="review-message" id="review-message"></p>
+
+</div>
+
+</div> 
+
+</div>
+
+
+<!-- SIGN OUT -->
+
+<div class="modal-overlay" id="signout-modal" hidden>
+
+<div class="modal-box">
+
+<h3>
+Sign out?
+</h3>
+
+<p>
+Are you sure you want to sign out?
+</p>
+
+<div class="modal-actions">
+
+<button class="modal-btn cancel" id="signout-no">
+No
+</button>
+
+<button class="modal-btn confirm" id="signout-yes">
+Yes
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- BOTTOM NAVIGATION -->
+
+<nav class="tabbar" hidden>
+
+<div class="tabbar-inner">
+
+<button class="tab-btn active" data-target="home">
+<i class="fas fa-house"></i>
+<span class="tab-label">Home</span>
+</button>
+
+<button class="tab-btn" data-target="order">
+<i class="fas fa-box"></i>
+<span class="tab-label">Order</span>
+</button>
+
+<button class="tab-btn" data-target="chat">
+<i class="fas fa-comments"></i>
+<span class="tab-label">Chat</span>
+</button>
+
+<button class="tab-btn" data-target="team">
+<i class="fas fa-users"></i>
+<span class="tab-label">Team</span>
+</button>
+
+<button class="tab-btn" data-target="wallet">
+<i class="fas fa-wallet"></i>
+<span class="tab-label">Wallet</span>
+</button>
+
+<button class="tab-btn" data-target="me">
+<i class="fas fa-user"></i>
+<span class="tab-label">Me</span>
+</button>
+
+</div>
+
+</nav>
+
+
+<script>
+
+
+/* =========================
+   LOGIN / SIGN UP
+========================= */
+
+let nexaUsers =
+JSON.parse(
+localStorage.getItem('nexaUsers') || '[]'
+);
+
+function showAuthMessage(element, text){
+
+    element.textContent = text;
+    element.style.display = 'block';
+
+}
+
+function hideAuthMessage(element){
+
+    element.textContent = '';
+    element.style.display = 'none';
+
+}
+
+
+function updateProfilePhone(phone){
+
+    document.querySelectorAll('.p-name').forEach(profileNumber => {
+        profileNumber.textContent = phone;
+    });
+
+}
+
+
+/* SIGN UP */
+
+document
+.getElementById('signup-button')
+.addEventListener('click', () => {
+
+    const phone =
+    document.getElementById('signup-phone').value.trim();
+
+    const password =
+    document.getElementById('signup-password').value;
+
+    const message =
+    document.getElementById('signup-message');
+
+    hideAuthMessage(message);
+
+    if(!phone || phone === '+256'){
+
+        showAuthMessage(
+        message,
+        'Please enter your phone number.'
+        );
+
+        return;
+
+    }
+
+    if(password.length < 8){
+
+        showAuthMessage(
+        message,
+        'Password must contain at least 8 characters.'
+        );
+
+        return;
+
+    }
+
+    const existingUser =
+    nexaUsers.find(
+    user => user.phone === phone
+    );
+
+    if(existingUser){
+
+        showAuthMessage(
+        message,
+        'This phone number is already registered.'
+        );
+
+        return;
+
+    }
+
+    const referralFromLink = new URLSearchParams(window.location.search).get('ref') || localStorage.getItem('nexaPendingReferral') || '';
+
+    nexaUsers.push({
+        phone: phone,
+        password: password,
+        referredBy: (referralFromLink && referralFromLink !== phone && nexaUsers.some(user => user.phone === referralFromLink)) ? referralFromLink : ''
+    });
+
+    localStorage.removeItem('nexaPendingReferral');
+
+    localStorage.setItem(
+    'nexaUsers',
+    JSON.stringify(nexaUsers)
+    );
+
+    localStorage.setItem(
+    'nexaCurrentUser',
+    phone
+    );
+
+    updateProfilePhone(phone);
+
+    document.getElementById('signup-phone').value = '+256 ';
+    document.getElementById('signup-password').value = '';
+
+    showScreen('home');
+
+    tabs.forEach(b =>
+        b.classList.remove('active')
+    );
+
+    document
+    .querySelector(
+    '.tab-btn[data-target="home"]'
+    )
+    .classList.add('active');
+
+    document.querySelector('.tabbar').hidden = false;
+
+});
+
+
+/* LOGIN */
+
+document
+.getElementById('login-button')
+.addEventListener('click', () => {
+
+    const phone =
+    document.getElementById('login-phone').value.trim();
+
+    const password =
+    document.getElementById('login-password').value;
+
+    const message =
+    document.getElementById('login-message');
+
+    hideAuthMessage(message);
+
+    if(!phone || phone === '+256'){
+
+        showAuthMessage(
+        message,
+        'Please enter your phone number.'
+        );
+
+        return;
+
+    }
+
+    if(password.length < 8){
+
+        showAuthMessage(
+        message,
+        'Password must contain at least 8 characters.'
+        );
+
+        return;
+
+    }
+
+    const user =
+    nexaUsers.find(
+    account => account.phone === phone
+    );
+
+    if(!user){
+
+        showAuthMessage(
+        message,
+        'This phone number is not registered. Please Sign Up first.'
+        );
+
+        return;
+
+    }
+
+    if(user.password !== password){
+
+        showAuthMessage(
+        message,
+        'Incorrect password.'
+        );
+
+        return;
+
+    }
+
+    localStorage.setItem(
+    'nexaCurrentUser',
+    phone
+    );
+
+    updateProfilePhone(phone);
+
+    document.getElementById('login-password').value = '';
+
+    showScreen('home');
+
+    tabs.forEach(b =>
+        b.classList.remove('active')
+    );
+
+    document
+    .querySelector(
+    '.tab-btn[data-target="home"]'
+    )
+    .classList.add('active');
+
+    document.querySelector('.tabbar').hidden = false;
+
+});
+
+
+/* SWITCH TO SIGN UP */
+
+document
+.getElementById('go-signup')
+.addEventListener('click', () => {
+
+    document.querySelector('.tabbar').hidden = true;
+    showScreen('signup');
+
+});
+
+
+/* SWITCH TO LOGIN */
+
+document
+.getElementById('go-login')
+.addEventListener('click', () => {
+
+    document.querySelector('.tabbar').hidden = true;
+    showScreen('login');
+
+});
+
+
+/* =========================
+   SCREEN NAVIGATION
+========================= */
+
+const tabs =
+document.querySelectorAll('.tab-btn');
+
+const screens =
+document.querySelectorAll('.screen');
+
+let previousScreen = 'home';
+
+function showScreen(name){
+
+    const target = 'screen-' + name;
+
+    screens.forEach(screen => {
+
+        screen.hidden =
+        screen.id !== target;
+
+    });
+
+    window.scrollTo(0,0);
+}
+
+
+/* =========================
+   NUMBERS ONLY
+========================= */
+
+function numbersOnly(input){
+
+    input.value =
+    input.value.replace(/[^0-9]/g,'');
+
+}
+
+
+/* =========================
+   MONEY WITH COMMAS
+========================= */
+
+function formatMoney(value){
+
+    const number =
+    value.replace(/[^0-9]/g,'');
+
+    if(!number){
+        return '';
+    }
+
+    return Number(number).toLocaleString('en-US');
+
+}
+
+
+function formatMoneyInput(input){
+
+    input.value =
+    formatMoney(input.value);
+
+}
+
+
+/* =========================
+   FIXED +256
+========================= */
+
+function fix256Number(input){
+
+    let value =
+    input.value;
+
+    if(!value.startsWith('+256')){
+
+        value =
+        '+256 ' +
+        value.replace(/\D/g,'');
+
+    }else{
+
+        value =
+        '+256 ' +
+        value.substring(4)
+        .replace(/\D/g,'');
+
+    }
+
+    input.value =
+    value;
+
+}
+
+
+/* =========================
+   PROTECT +256
+========================= */
+
+function protect256(event,input){
+
+    const start =
+    input.selectionStart;
+
+    if(
+        (event.key === 'Backspace' && start <= 5) ||
+        (event.key === 'Delete' && start < 5) ||
+        (event.key === 'ArrowLeft' && start <= 5)
+    ){
+
+        event.preventDefault();
+
+        input.setSelectionRange(5,5);
+
+    }
+
+}
+
+
+/* =========================
+   BOTTOM TABS
+========================= */
+
+tabs.forEach(btn => {
+
+    btn.addEventListener('click', () => {
+
+        tabs.forEach(b =>
+            b.classList.remove('active')
+        );
+
+        btn.classList.add('active');
+
+        previousScreen =
+        btn.dataset.target;
+
+        if(btn.dataset.target === 'me'){
+
+            updateProfilePhone(
+                getCurrentUserPhone() || '+256 XXXXXXXXX'
+            );
+
+        }
+
+        showScreen(
+        btn.dataset.target
+        );
+
+        if(btn.dataset.target === 'chat'){
+            displayChatList();
+        }
+
+    });
+
+});
+
+
+/* =========================
+   PURCHASE
+========================= */
+
+document
+.querySelectorAll('.purchase-btn')
+.forEach(button => {
+
+    button.addEventListener('click', () => {
+
+        const product =
+        button.dataset.product;
+
+        const price =
+        button.dataset.price;
+
+        document
+        .getElementById('payment-product')
+        .textContent =
+        product;
+
+        /*
+        Keep the product's OWN price.
+        Example:
+        UGX. 1,000,000
+        */
+
+        const numericPrice =
+        price.replace(/[^0-9]/g,'');
+
+        const formattedPrice =
+        Number(numericPrice)
+        .toLocaleString('en-US');
+
+        document
+        .getElementById('payment-price')
+        .textContent =
+        'UGX. ' + formattedPrice;
+
+        document
+        .getElementById('mobile-payment-amount')
+        .value =
+        formattedPrice;
+
+        document
+        .getElementById('bank-payment-amount')
+        .value =
+        formattedPrice;
+
+        previousScreen =
+        'order';
+
+        showScreen('payment');
+
+    });
+
+});
+
+
+/* =========================
+   OPEN SECTIONS
+========================= */
+
+document
+.querySelectorAll('[data-open]')
+.forEach(element => {
+
+    element.addEventListener('click', () => {
+
+        const destination =
+        element.dataset.open;
+
+        if(destination === 'withdraw-method'){
+
+            previousScreen =
+            'home';
+
+        }else if(destination === 'recharge-method'){
+
+            previousScreen =
+            'wallet';
+
+        }else if(destination === 'deposit' ||
+                  destination === 'withdraw'){
+
+            previousScreen =
+            'wallet';
+
+        }else{
+
+            previousScreen =
+            'me';
+
+        }
+
+        showScreen(destination);
+
+        if(destination === 'edit-number'){
+            const currentNumberInput = document.getElementById('edit-current-number');
+            if(currentNumberInput){
+                currentNumberInput.value = getCurrentUserPhone();
+            }
+        }
+
+    });
+
+});
+
+
+/* =========================
+   BACK BUTTONS
+========================= */
+
+document
+.querySelectorAll('[data-back]')
+.forEach(button => {
+
+    button.addEventListener('click', () => {
+
+        showScreen(
+        button.dataset.back
+        );
+
+    });
+
+});
+
+
+/* =========================
+   WITHDRAW ALWAYS RETURNS HOME
+========================= */
+
+document
+.querySelectorAll(
+'#screen-withdraw-method .back-btn'
+)
+.forEach(button => {
+
+    button.addEventListener('click', () => {
+
+        showScreen('home');
+
+    });
+
+});
+
+
+/* =========================
+   PASSWORD
+========================= */
+
+document
+.getElementById('pw-save')
+.addEventListener('click', () => {
+
+    const currentPassword = document.getElementById('pw-current').value;
+    const newPassword = document.getElementById('pw-new').value;
+    const confirmPassword = document.getElementById('pw-confirm').value;
+    const phone = getCurrentUserPhone();
+    const user = nexaUsers.find(account => account.phone === phone);
+
+    if(!user){
+        alert('Please login first.');
+        showScreen('login');
+        return;
+    }
+
+    if(user.password !== currentPassword){
+        alert('Current password is incorrect.');
+        return;
+    }
+
+    if(newPassword.length < 8){
+        alert('New password must contain at least 8 characters.');
+        return;
+    }
+
+    if(newPassword !== confirmPassword){
+        alert('New passwords do not match.');
+        return;
+    }
+
+    user.password = newPassword;
+    localStorage.setItem('nexaUsers', JSON.stringify(nexaUsers));
+
+    document.getElementById('pw-current').value = '';
+    document.getElementById('pw-new').value = '';
+    document.getElementById('pw-confirm').value = '';
+
+    alert('Password changed successfully.');
+    showScreen('privacy');
+
+});
+
+
+/* =========================
+   EDIT NUMBER
+========================= */
+
+document
+.getElementById('number-save')
+.addEventListener('click', () => {
+
+    const oldNumber = document.getElementById('edit-current-number').value.trim();
+    const newNumber = document.getElementById('edit-new-number').value.trim();
+    const loggedInNumber = getCurrentUserPhone();
+
+    if(!loggedInNumber){
+        alert('Please login first.');
+        showScreen('login');
+        return;
+    }
+
+    if(oldNumber !== loggedInNumber){
+        alert('Current number is incorrect.');
+        return;
+    }
+
+    if(!newNumber || newNumber === '+256'){
+        alert('Please enter a new phone number.');
+        return;
+    }
+
+    if(newNumber === oldNumber){
+        alert('Please enter a different phone number.');
+        return;
+    }
+
+    if(isRegisteredUser(newNumber)){
+        alert('This phone number is already registered.');
+        return;
+    }
+
+    const userIndex = nexaUsers.findIndex(account => account.phone === oldNumber);
+    if(userIndex === -1){
+        alert('Account not found.');
+        return;
+    }
+
+    nexaUsers[userIndex].phone = newNumber;
+    localStorage.setItem('nexaUsers', JSON.stringify(nexaUsers));
+    localStorage.setItem('nexaCurrentUser', newNumber);
+
+    /* Move existing conversations to the new phone number. */
+    const oldConversations = JSON.parse(localStorage.getItem('nexaChatConversations') || '{}');
+    const migratedConversations = {};
+    Object.keys(oldConversations).forEach(key => {
+        const parts = key.split('|');
+        const replaced = parts.map(part => part === oldNumber ? newNumber : part);
+        const messages = (oldConversations[key] || []).map(item => ({
+            ...item,
+            sender: item.sender === oldNumber ? newNumber : item.sender,
+            receiver: item.receiver === oldNumber ? newNumber : item.receiver
+        }));
+        migratedConversations[replaced.sort().join('|')] = messages;
+    });
+    chatConversations = migratedConversations;
+    localStorage.setItem('nexaChatConversations', JSON.stringify(chatConversations));
+
+    updateProfilePhone(newNumber);
+    document.getElementById('edit-current-number').value = newNumber;
+    document.getElementById('edit-new-number').value = '+256 ';
+
+    alert('Phone number changed successfully.');
+    showScreen('privacy');
+
+});
+
+
+/* =========================
+   HELP
+========================= */
+
+document
+.getElementById('help-agent')
+.addEventListener('click', () => {
+
+    showScreen('agent');
+
+});
+
+document
+.getElementById('help-community')
+.addEventListener('click', () => {
+
+    showScreen('community');
+
+});
+
+document
+.getElementById('help-review')
+.addEventListener('click', () => {
+
+    showScreen('review');
+
+});
+
+
+/* =========================
+   COMMUNITY POSTS
+========================= */
+
+const communitySubmit =
+document.getElementById(
+'community-submit'
+);
+
+const communityImage =
+document.getElementById(
+'community-image'
+);
+
+const communityComment =
+document.getElementById(
+'community-comment'
+);
+
+const communityPosts =
+document.getElementById(
+'community-posts'
+);
+
+let savedCommunityPosts =
+JSON.parse(
+localStorage.getItem(
+'nexaCommunityPosts'
+) || '[]'
+);
+
+
+function displayCommunityPosts(){
+
+    communityPosts.innerHTML = '';
+
+    savedCommunityPosts.forEach(post => {
+
+        const postBox =
+        document.createElement('div');
+
+        postBox.className =
+        'community-post';
+
+        const avatar =
+        document.createElement('div');
+
+        avatar.className =
+        'community-post-avatar';
+
+        avatar.innerHTML =
+        '<i class="fas fa-user"></i>';
+
+        const content =
+        document.createElement('div');
+
+        content.className =
+        'community-post-content';
+
+        const number =
+        document.createElement('div');
+
+        number.className =
+        'community-number';
+
+        number.textContent =
+        post.number;
+
+        const comment =
+        document.createElement('p');
+
+        comment.className =
+        'community-comment';
+
+        comment.textContent =
+        post.comment;
+
+        content.appendChild(number);
+
+        if(post.comment){
+
+            content.appendChild(comment);
+
+        }
+
+        if(post.image){
+
+            const image =
+            document.createElement('img');
+
+            image.className =
+            'community-image';
+
+            image.src =
+            post.image;
+
+            image.alt =
+            'Community picture';
+
+            image.addEventListener(
+            'click',
+            () => {
+
+                window.open(
+                post.image,
+                '_blank'
+                );
+
+            });
+
+            content.appendChild(image);
+
+        }
+
+        postBox.appendChild(avatar);
+        postBox.appendChild(content);
+
+        communityPosts.appendChild(
+        postBox
+        );
+
+    });
+
+}
+
+
+communitySubmit.addEventListener(
+'click',
+() => {
+
+    const file =
+    communityImage.files[0];
+
+    const comment =
+    communityComment.value.trim();
+
+    if(!file && !comment){
+
+        alert(
+        'Please upload a picture or write a comment.'
+        );
+
+        return;
+
+    }
+
+    const addPost =
+    imageData => {
+
+        const newPost = {
+
+            number:
+            getCurrentUserPhone(),
+
+            comment:
+            comment,
+
+            image:
+            imageData || ''
+
+        };
+
+        savedCommunityPosts.unshift(
+        newPost
+        );
+
+        localStorage.setItem(
+        'nexaCommunityPosts',
+        JSON.stringify(
+        savedCommunityPosts
+        )
+        );
+
+        communityImage.value =
+        '';
+
+        communityComment.value =
+        '';
+
+        displayCommunityPosts();
+
+    };
+
+
+    if(file){
+
+        const reader =
+        new FileReader();
+
+        reader.onload =
+        function(event){
+
+            addPost(
+            event.target.result
+            );
+
+        };
+
+        reader.readAsDataURL(file);
+
+    }else{
+
+        addPost('');
+
+    }
+
+});
+
+displayCommunityPosts();
+
+
+/* =========================
+   CHAT
+========================= */
+
+let currentChatNumber='';
+
+const chatList=document.getElementById('chat-list');
+const conversationNumber=document.getElementById('conversation-number');
+const chatMessages=document.getElementById('chat-messages');
+const chatInput=document.getElementById('chat-input');
+const chatSend=document.getElementById('chat-send');
+const newChatNumber=document.getElementById('new-chat-number');
+const startChat=document.getElementById('start-chat');
+
+let chatConversations=JSON.parse(localStorage.getItem('nexaChatConversations') || '{}');
+
+function getCurrentUserPhone(){
+    return localStorage.getItem('nexaCurrentUser') || '';
+}
+
+function isRegisteredUser(number){
+    return nexaUsers.some(user => user.phone === number);
+}
+
+function chatKey(a,b){
+    return [a,b].sort().join('|');
+}
+
+function saveChatConversations(){
+    localStorage.setItem('nexaChatConversations',JSON.stringify(chatConversations));
+}
+
+function getConversation(number){
+    const key=chatKey(getCurrentUserPhone(),number);
+    if(!chatConversations[key]) chatConversations[key]=[];
+    return chatConversations[key];
+}
+
+function deleteChatConversation(number){
+    const key=chatKey(getCurrentUserPhone(),number);
+    delete chatConversations[key];
+    saveChatConversations();
+    if(currentChatNumber===number){
+        chatMessages.innerHTML='';
+    }
+    displayChatList();
+}
+
+function getLastMessage(number){
+    const conversation=getConversation(number);
+    if(!conversation.length) return '';
+    return conversation[conversation.length-1].text;
+}
+
+function hasUnreadMessages(number){
+    const user=getCurrentUserPhone();
+    return getConversation(number).some(item =>
+        item.receiver===user && item.sender!==user && !item.read
+    );
+}
+
+function getChatPartners(){
+    const user=getCurrentUserPhone();
+    if(!user) return [];
+
+    const partners=new Set();
+    Object.keys(chatConversations).forEach(key=>{
+        const parts=key.split('|');
+        if(parts.length!==2 || !parts.includes(user)) return;
+        const partner=parts[0]===user ? parts[1] : parts[0];
+        if(partner && partner!==user && isRegisteredUser(partner)){
+            if(chatConversations[key] && chatConversations[key].length) partners.add(partner);
+        }
+    });
+    return Array.from(partners);
+}
+
+function displayChatList(){
+    if(!chatList) return;
+    chatList.innerHTML='';
+
+    const partners=getChatPartners();
+
+    if(!partners.length){
+        const empty=document.createElement('div');
+        empty.className='chat-empty';
+        empty.textContent='No chats yet.';
+        chatList.appendChild(empty);
+        return;
+    }
+
+    partners.forEach(number=>{
+        const row=document.createElement('div');
+        row.className='chat-row';
+
+        const avatar=document.createElement('div');
+        avatar.className='avatar';
+        avatar.innerHTML='<i class="fas fa-user"></i>';
+
+        const info=document.createElement('div');
+        info.className='chat-info';
+
+        const name=document.createElement('p');
+        name.className='c-name';
+        name.textContent=number;
+
+        const msg=document.createElement('p');
+        msg.className='c-msg';
+        msg.textContent=getLastMessage(number);
+
+        if(hasUnreadMessages(number)){
+            const mark=document.createElement('span');
+            mark.className='unread-mark';
+            mark.title='Unread message';
+            name.appendChild(mark);
+        }
+
+        info.appendChild(name);
+        info.appendChild(msg);
+
+        const meta=document.createElement('div');
+        meta.className='chat-meta';
+
+        const time=document.createElement('span');
+        time.className='c-time';
+        const conversation=getConversation(number);
+        if(conversation.length){
+            time.textContent=new Date(conversation[conversation.length-1].time || Date.now()).toLocaleTimeString([], {hour:'numeric',minute:'2-digit'});
+        }
+        meta.appendChild(time);
+
+        row.appendChild(avatar);
+        row.appendChild(info);
+        row.appendChild(meta);
+
+        row.addEventListener('click',()=>openUserConversation(number));
+        chatList.appendChild(row);
+    });
+}
+
+function markConversationAsRead(number){
+    const user=getCurrentUserPhone();
+    const conversation=getConversation(number);
+    let changed=false;
+
+    conversation.forEach(item=>{
+        if(item.receiver===user && item.sender!==user && !item.read){
+            item.read=true;
+            changed=true;
+        }
+    });
+
+    if(changed) saveChatConversations();
+}
+
+function displayConversation(number){
+    chatMessages.innerHTML='';
+    const conversation=getConversation(number);
+    const user=getCurrentUserPhone();
+
+    conversation.forEach((item,index)=>{
+        const wrap=document.createElement('div');
+        const mine=item.sender===user;
+        wrap.className='message-wrap '+(mine?'sent-wrap':'received-wrap');
+
+        const message=document.createElement('div');
+        message.className=mine?'message sent':'message received';
+        message.textContent=item.text;
+
+        if(!mine && !item.read){
+            const mark=document.createElement('span');
+            mark.className='message-unread-mark';
+            mark.textContent='●';
+            mark.title='Unread';
+            message.appendChild(mark);
+        }
+
+        wrap.appendChild(message);
+
+        if(mine){
+            const actions=document.createElement('div');
+            actions.className='message-actions';
+
+            const edit=document.createElement('button');
+            edit.className='message-action-btn';
+            edit.textContent='Edit';
+            edit.addEventListener('click',()=>{
+                const edited=prompt('Edit your message:',item.text);
+                if(edited===null) return;
+                const newText=edited.trim();
+                if(!newText) return;
+                conversation[index].text=newText;
+                conversation[index].edited=true;
+                saveChatConversations();
+                displayConversation(number);
+                displayChatList();
+            });
+
+            const del=document.createElement('button');
+            del.className='message-action-btn';
+            del.textContent='Delete';
+            del.addEventListener('click',()=>{
+                conversation.splice(index,1);
+                saveChatConversations();
+                displayConversation(number);
+                displayChatList();
+            });
+
+            actions.appendChild(edit);
+            actions.appendChild(del);
+            wrap.appendChild(actions);
+
+            let pressTimer=null;
+            const openActions=event=>{
+                event.preventDefault();
+                document.querySelectorAll('.message-actions.show').forEach(el=>{
+                    if(el!==actions) el.classList.remove('show');
+                });
+                actions.classList.toggle('show');
+            };
+
+            wrap.addEventListener('contextmenu',openActions);
+            wrap.addEventListener('touchstart',event=>{
+                pressTimer=setTimeout(()=>openActions(event),600);
+            },{passive:false});
+            wrap.addEventListener('touchend',()=>clearTimeout(pressTimer));
+            wrap.addEventListener('touchmove',()=>clearTimeout(pressTimer));
+            wrap.addEventListener('touchcancel',()=>clearTimeout(pressTimer));
+            wrap.addEventListener('mousedown',()=>{
+                pressTimer=setTimeout(()=>openActions(new MouseEvent('contextmenu')),600);
+            });
+            wrap.addEventListener('mouseup',()=>clearTimeout(pressTimer));
+            wrap.addEventListener('mouseleave',()=>clearTimeout(pressTimer));
+        }
+
+        chatMessages.appendChild(wrap);
+    });
+
+    chatMessages.scrollTop=chatMessages.scrollHeight;
+}
+
+function openUserConversation(number){
+    const user=getCurrentUserPhone();
+
+    if(!user){
+        alert('Please login first.');
+        showScreen('login');
+        document.querySelector('.tabbar').hidden=true;
+        return;
+    }
+
+    if(!number || number==='+256') return;
+
+    if(!isRegisteredUser(number)){
+        alert('This phone number is not registered with NEXA. You cannot chat with this number.');
+        return;
+    }
+
+    if(number===user){
+        alert('You cannot start a chat with your own number.');
+        return;
+    }
+
+    currentChatNumber=number;
+    conversationNumber.textContent=currentChatNumber;
+    displayConversation(currentChatNumber);
+    markConversationAsRead(currentChatNumber);
+    displayConversation(currentChatNumber);
+    displayChatList();
+    showScreen('conversation');
+    chatInput.focus();
+}
+
+startChat.addEventListener('click',()=>{
+    const number=newChatNumber.value.trim();
+
+    if(!number || number==='+256'){
+        alert('Please enter a phone number.');
+        return;
+    }
+
+    if(!isRegisteredUser(number)){
+        alert('This phone number is not registered with NEXA. You cannot chat with this number.');
+        return;
+    }
+
+    if(number===getCurrentUserPhone()){
+        alert('You cannot start a chat with your own number.');
+        return;
+    }
+
+    openUserConversation(number);
+    newChatNumber.value='+256 ';
+});
+
+function sendChatMessage(){
+    const text=chatInput.value.trim();
+    if(!text) return;
+
+    const user=getCurrentUserPhone();
+
+    if(!user){
+        alert('Please login first.');
+        showScreen('login');
+        document.querySelector('.tabbar').hidden=true;
+        return;
+    }
+
+    if(!isRegisteredUser(currentChatNumber)){
+        alert('This phone number is not registered with NEXA. You cannot send messages to this number.');
+        showScreen('chat');
+        return;
+    }
+
+    if(currentChatNumber===user){
+        alert('You cannot send messages to your own number.');
+        return;
+    }
+
+    const key=chatKey(user,currentChatNumber);
+    if(!chatConversations[key]) chatConversations[key]=[];
+
+    chatConversations[key].push({
+        sender:user,
+        receiver:currentChatNumber,
+        text:text,
+        time:Date.now(),
+        read:false
+    });
+
+    saveChatConversations();
+    displayConversation(currentChatNumber);
+    displayChatList();
+    chatInput.value='';
+}
+
+chatSend.addEventListener('click',sendChatMessage);
+
+chatInput.addEventListener('keydown',event=>{
+    if(event.key==='Enter'){
+        event.preventDefault();
+        sendChatMessage();
+    }
+});
+
+document.getElementById('chat-back').addEventListener('click',()=>{
+    displayChatList();
+    showScreen('chat');
+});
+
+document.addEventListener('click',event=>{
+    if(!event.target.closest('.message-wrap')){
+        document.querySelectorAll('.message-actions.show').forEach(el=>el.classList.remove('show'));
+    }
+});
+
+displayChatList();
+
+/* =========================
+   ACCOUNT FINANCE
+========================= */
+
+function accountDataKey(){
+    const phone=getCurrentUserPhone();
+    return phone ? 'nexaFinance_' + phone : 'nexaFinance_guest';
+}
+
+function getFinance(){
+    const key=accountDataKey();
+    let data=JSON.parse(localStorage.getItem(key) || 'null');
+    if(!data){
+        data={deposits:[],withdrawals:[],devices:[],referrals:[]};
+        localStorage.setItem(key,JSON.stringify(data));
+    }
+    if(!Array.isArray(data.deposits)) data.deposits=[];
+    if(!Array.isArray(data.withdrawals)) data.withdrawals=[];
+    if(!Array.isArray(data.devices)) data.devices=[];
+    if(!Array.isArray(data.referrals)) data.referrals=[];
+    return data;
+}
+
+function saveFinance(data){
+    localStorage.setItem(accountDataKey(),JSON.stringify(data));
+}
+
+function moneyNumber(value){
+    return Number(String(value || '').replace(/[^0-9]/g,'')) || 0;
+}
+
+function moneyText(value){
+    return 'UGX. ' + Number(value || 0).toLocaleString('en-US');
+}
+
+function financeDate(timestamp){
+    return new Date(timestamp || Date.now()).toLocaleString([],{
+        year:'numeric',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'
+    });
+}
+
+function calculateAIIncome(data){
+    const now=Date.now();
+    let total=0;
+    data.devices.forEach(device=>{
+        const daily=Number(device.dailyIncome || 0);
+        const totalIncome=Number(device.totalIncome || 0);
+        const days=Number(device.cycleDays || 0);
+        const elapsed=Math.max(0,(now-Number(device.startedAt || now))/86400000);
+        total += Math.min(totalIncome, daily * Math.min(elapsed,days));
+    });
+    return Math.floor(total);
+}
+
+function updateFinanceUI(){
+    const data=getFinance();
+    const deposits=data.deposits.reduce((sum,r)=>sum+Number(r.amount||0),0);
+    const withdrawals=data.withdrawals.reduce((sum,r)=>sum+Number(r.amount||0),0);
+    const aiIncome=calculateAIIncome(data);
+    const teamIncome=data.referrals.reduce((sum,r)=>sum+Number(r.commission||0),0);
+    const available=Math.max(0,deposits + aiIncome + teamIncome - withdrawals);
+    const totalEarnings=Math.max(0,aiIncome + teamIncome);
+    const teamCount=nexaUsers.filter(user => user.referredBy === getCurrentUserPhone()).length;
+
+    const set=(id,value)=>{const el=document.getElementById(id);if(el)el.textContent=value;};
+    set('home-deposit-total',moneyText(deposits));
+    set('home-available-balance',moneyText(available));
+    set('home-ai-income',moneyText(aiIncome));
+    set('home-team-count',teamCount);
+    set('home-team-income',moneyText(teamIncome));
+    set('wallet-available-balance',moneyText(available));
+    set('wallet-ai-income',moneyText(aiIncome));
+    set('wallet-total-earnings',moneyText(totalEarnings));
+
+    const depositList=document.getElementById('deposit-record-list');
+    if(depositList){
+        depositList.innerHTML='';
+        if(!data.deposits.length){
+            depositList.innerHTML='<p class="finance-empty">THERE ARE NO DEPOSIT RECORDS YET</p>';
+        }else{
+            [...data.deposits].reverse().forEach(r=>{
+                const box=document.createElement('div'); box.className='finance-record';
+                const strong=document.createElement('strong'); strong.textContent=moneyText(r.amount);
+                const span=document.createElement('span'); span.textContent='Deposited on ' + financeDate(r.time);
+                box.append(strong,span); depositList.appendChild(box);
+            });
+        }
+    }
+
+    const withdrawList=document.getElementById('withdraw-record-list');
+    if(withdrawList){
+        withdrawList.innerHTML='';
+        if(!data.withdrawals.length){
+            withdrawList.innerHTML='<p class="finance-empty">THERE ARE NO WITHDRAW RECORDS YET</p>';
+        }else{
+            [...data.withdrawals].reverse().forEach(r=>{
+                const box=document.createElement('div'); box.className='finance-record';
+                const strong=document.createElement('strong'); strong.textContent=moneyText(r.amount);
+                const span=document.createElement('span'); span.textContent='Withdrawn on ' + financeDate(r.time);
+                box.append(strong,span); withdrawList.appendChild(box);
+            });
+        }
+    }
+}
+
+function addDeposit(amount){
+    amount=moneyNumber(amount);
+    if(amount<=0){ alert('Please enter a valid deposit amount.'); return false; }
+    const data=getFinance();
+    data.deposits.push({amount,time:Date.now()});
+    saveFinance(data); updateFinanceUI(); return true;
+}
+
+function addWithdrawal(amount){
+    amount=moneyNumber(amount);
+    if(amount<=0){ alert('Please enter a valid withdrawal amount.'); return false; }
+    const data=getFinance();
+    const deposits=data.deposits.reduce((sum,r)=>sum+Number(r.amount||0),0);
+    const withdrawals=data.withdrawals.reduce((sum,r)=>sum+Number(r.amount||0),0);
+    const balance=Math.max(0,deposits+calculateAIIncome(data)+data.referrals.reduce((sum,r)=>sum+Number(r.commission||0),0)-withdrawals);
+    if(amount>balance){ alert('Insufficient available balance.'); return false; }
+    data.withdrawals.push({amount,time:Date.now()});
+    saveFinance(data); updateFinanceUI(); return true;
+}
+
+function activatePurchasedDevice(productName,price){
+    const product=products.find(p=>p[0]===productName);
+    if(!product) return;
+    const data=getFinance();
+    if(data.devices.some(d=>d.product===productName)) return;
+    data.devices.push({
+        product:productName,
+        price:moneyNumber(price),
+        dailyIncome:moneyNumber(product[3]),
+        cycleDays:Number(String(product[4]).replace(/[^0-9]/g,'')) || 0,
+        totalIncome:moneyNumber(product[5]),
+        startedAt:Date.now()
+    });
+
+    /* The inviter receives 10% only from this user's first purchased device. */
+    const buyer=getCurrentUserPhone();
+    const buyerAccount=nexaUsers.find(user => user.phone === buyer);
+    const inviter=buyerAccount && buyerAccount.referredBy;
+    if(inviter && inviter !== buyer){
+        const inviterKey='nexaFinance_' + inviter;
+        let inviterData=JSON.parse(localStorage.getItem(inviterKey) || 'null');
+        if(!inviterData){
+            inviterData={deposits:[],withdrawals:[],devices:[],referrals:[]};
+        }
+        if(!Array.isArray(inviterData.referrals)) inviterData.referrals=[];
+        if(!inviterData.referrals.some(r => r.phone === buyer)){
+            inviterData.referrals.push({
+                phone:buyer,
+                commission:Math.floor(moneyNumber(price) * 0.10),
+                time:Date.now()
+            });
+            localStorage.setItem(inviterKey,JSON.stringify(inviterData));
+        }
+    }
+
+    saveFinance(data); updateFinanceUI();
+}
+
+/* Recharge is treated as the account's deposit action. */
+document.querySelectorAll('#screen-recharge-mobile-money .continue-btn,#screen-recharge-bank-card .continue-btn').forEach(button=>{
+    button.addEventListener('click',()=>{
+        const input=button.closest('.payment-detail').querySelector('input[placeholder="Enter amount"]');
+        if(addDeposit(input ? input.value : '')){
+            alert('Deposit recorded successfully.');
+            showScreen('wallet');
+        }
+    });
+});
+
+/* Record a purchased device after the existing payment Continue button is pressed. */
+document.querySelectorAll('#screen-mobile-money-payment .continue-btn,#screen-bank-card-payment .continue-btn').forEach(button=>{
+    button.addEventListener('click',()=>{
+        activatePurchasedDevice(
+            document.getElementById('payment-product').textContent,
+            document.getElementById('payment-price').textContent
+        );
+        showScreen('order');
+    });
+});
+
+/* Record withdrawals immediately when the existing withdrawal Continue button is pressed. */
+document.querySelectorAll('#screen-withdraw-mobile-money .continue-btn,#screen-withdraw-bank .continue-btn').forEach(button=>{
+    button.addEventListener('click',()=>{
+        const input=button.closest('.payment-detail').querySelector('input[placeholder="Enter amount"]');
+        if(addWithdrawal(input ? input.value : '')){
+            alert('Withdrawal recorded successfully.');
+            showScreen('home');
+        }
+    });
+});
+
+/* Keep earnings current while the page is open. */
+updateFinanceUI();
+setInterval(updateFinanceUI,60000);
+
+/* =========================
+   REVIEW
+========================= */
+
+const submitReview =
+document.getElementById('submit-review');
+
+const reviewInput =
+document.getElementById('review-text');
+
+const reviewList =
+document.getElementById('review-list');
+
+const reviewMessage =
+document.getElementById('review-message');
+
+
+submitReview.addEventListener('click', () => {
+
+    const review =
+    reviewInput.value.trim();
+
+    if(review === ''){
+
+        reviewMessage.textContent =
+        'Please write your review first.';
+
+        reviewMessage.style.display =
+        'block';
+
+        return;
+
+    }
+
+    const reviewItem =
+    document.createElement('p');
+
+    reviewItem.textContent =
+    review;
+
+    reviewList.innerHTML = '';
+
+    reviewList.appendChild(
+    reviewItem
+    );
+
+    reviewInput.value =
+    '';
+
+    reviewMessage.textContent =
+    'Thank you for sharing your thoughts!';
+
+    reviewMessage.style.display =
+    'block';
+
+});
+
+/* =========================
+   SIGN OUT
+========================= */
+
+const signoutModal =
+document.getElementById(
+'signout-modal'
+);
+
+document
+.getElementById('signout-trigger')
+.addEventListener('click', () => {
+
+    signoutModal.hidden =
+    false;
+
+});
+
+
+document
+.getElementById('signout-no')
+.addEventListener('click', () => {
+
+    signoutModal.hidden =
+    true;
+
+});
+
+
+document
+.getElementById('signout-yes')
+.addEventListener('click', () => {
+
+    signoutModal.hidden = true;
+    localStorage.removeItem('nexaCurrentUser');
+    currentChatNumber = '';
+    chatMessages.innerHTML = '';
+    displayChatList();
+
+    tabs.forEach(b =>
+        b.classList.remove('active')
+    );
+
+    document
+    .querySelector(
+    '.tab-btn[data-target="home"]'
+    )
+    .classList.add('active');
+
+    document.querySelector('.tabbar').hidden = true;
+    showScreen('login');
+
+});
+
+
+</script>
+
+</body>
+</html>
