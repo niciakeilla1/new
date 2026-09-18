@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+
 <link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
@@ -27,6 +28,160 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 
 *{
     box-sizing:border-box;
+}
+    /* ================================
+   RESPONSIVE PHONE DESIGN
+   Keeps laptop design unchanged
+   ================================ */
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Phone */
+@media screen and (max-width: 768px) {
+
+    body {
+        width: 100%;
+        min-width: 0;
+        overflow-x: hidden;
+        font-size: 15px;
+    }
+
+    .app,
+    .container,
+    .main,
+    .content,
+    .screen {
+        width: 100%;
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* Prevent boxes from becoming wider than the phone */
+    input,
+    select,
+    textarea,
+    button {
+        max-width: 100%;
+    }
+
+    /* Product grids become one column */
+    .products,
+    .product-grid,
+    .products-grid {
+        grid-template-columns: 1fr !important;
+        width: 100%;
+    }
+
+    /* Product cards fit the phone */
+    .product-card {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    /* Images fit inside their cards */
+    .product-card img {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        object-fit: contain;
+    }
+
+    /* Forms fit the screen */
+    .form,
+    .login-box,
+    .signup-box {
+        width: calc(100% - 24px);
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* Navigation stays inside the phone */
+    .bottom-nav {
+        width: 100%;
+        max-width: 100%;
+        left: 0;
+        right: 0;
+    }
+
+    /* Chat messages don't overflow */
+    .chat,
+    .messages,
+    .message-list {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    .message {
+        max-width: 80%;
+        word-wrap: break-word;
+        overflow-wrap: anywhere;
+    }
+
+    /* Tables/long content don't break the screen */
+    table {
+        max-width: 100%;
+    }
+
+    /* Make headings fit smaller screens */
+    h1 {
+        font-size: 25px;
+    }
+
+    h2 {
+        font-size: 21px;
+    }
+
+    h3 {
+        font-size: 18px;
+    }
+}
+
+/* Small phones */
+@media screen and (max-width: 430px) {
+
+    body {
+        font-size: 14px;
+    }
+
+    h1 {
+        font-size: 23px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    .product-card {
+        padding: 12px;
+    }
+
+    button {
+        min-height: 42px;
+    }
+
+    input,
+    select,
+    textarea {
+        font-size: 16px;
+    }
 }
 
 body{
@@ -181,6 +336,7 @@ body{
 
 /* HOME */
 
+
 /* HOME */
 
 .stats-grid{
@@ -215,7 +371,6 @@ body{
 }
 
 /* NEW CSS GOES HERE */
-
 .stats-grid{
     display:grid;
     grid-template-columns:repeat(3,1fr);
@@ -1403,22 +1558,6 @@ body{
 
 /* LOGIN / SIGN UP */
 .auth-screen{min-height:calc(100vh - 40px);display:flex;align-items:center;justify-content:center;padding:30px 20px 120px}.auth-box{width:460px;max-width:100%;background:#0D1D32;border:1px solid #263C55;border-radius:22px;padding:24px}.auth-logo{text-align:center;color:var(--amber);font-size:30px;margin-bottom:4px}.auth-title{text-align:center;color:white;margin:0 0 6px;font-size:24px}.auth-subtitle{text-align:center;color:#7890AC;font-size:12px;margin:0 0 22px}.auth-group{margin-bottom:14px}.auth-group label{display:block;color:#7890AC;font-size:11px;margin-bottom:6px}.auth-group input{width:100%;background:#071426;border:1px solid #263C55;border-radius:12px;padding:12px 14px;color:#FFF;font-size:13px;outline:none}.auth-button{width:100%;padding:13px;margin-top:4px;border:none;border-radius:40px;background:var(--amber);color:var(--ink);font-size:14px;font-weight:700;cursor:pointer}.auth-switch{text-align:center;color:#7890AC;font-size:12px;margin:18px 0 0}.auth-switch button{border:none;background:none;color:var(--amber);font-weight:700;cursor:pointer;padding:0}.auth-error{display:none;margin-top:12px;padding:10px;border-radius:12px;background:var(--danger-soft);color:var(--danger);font-size:12px}
-
-/* === NEXA AI INCOME PAGE ADDITION === */
-.nexa-ai-income-page{
-    width:100%;
-    max-width:1100px;
-    margin:0 auto;
-    padding:18px 0 100px;
-}
-.nexa-ai-income-page h2{margin:0 24px 8px;}
-.nexa-ai-income-page .nexa-ai-note{margin:0 24px 18px;color:#777;}
-.nexa-ai-drive-list{display:flex;flex-direction:column;gap:12px;margin:0 24px;}
-.nexa-ai-drive-card{background:#fff;border-radius:16px;padding:16px;box-shadow:0 4px 14px rgba(0,0,0,.08);}
-.nexa-ai-drive-card h3{margin:0 0 10px;}
-.nexa-ai-drive-line{display:flex;justify-content:space-between;gap:12px;margin:7px 0;font-size:14px;}
-.nexa-ai-empty{text-align:center;margin:25px 24px;padding:30px 20px;background:#fff;border-radius:16px;color:#777;box-shadow:0 4px 14px rgba(0,0,0,.06);}
-
 </style>
 </head>
 
@@ -1505,17 +1644,17 @@ Withdraw
 
 <script>
 const products = [
-["NX 1","C:\\Users\\Burundi Store\\Desktop\\NEW\\pictures\\NX0.jpeg","UGX. 15,000","UGX. 2,500","10 Days","UGX. 25,000"],
-["NX 2","C:\\Users\\Burundi Store\\Desktop\\NEW\\pictures\\NX1.jpeg","UGX. 60,000","UGX. 10,000","30 Days","UGX. 100,000"],
-["NX 3","C:\\Users\\Burundi Store\\Desktop\\NEW\\pictures\\NX2.jpeg","UGX. 100,000","UGX. 21,000","30 Days","UGX. 210,000"],
-["NX 4","C:\\Users\\Burundi Store\\Desktop\\NEW\\pictures\\NX3.jpeg","UGX. 300,000","UGX. 52,000","100 Days","UGX. 520,000"],
-["NX 5","C:\\Users\\Burundi Store\\Desktop\\NEW\\pictures\\NX4.jpeg","UGX. 700,000","UGX. 150,000","100 Days","UGX. 1,500,000"],
-["NX 6","C:\\Users\\Burundi Store\\Desktop\\NEW\\pictures\\NX5.jpeg","UGX. 1,000,000","UGX. 320,000","100 Days","UGX. 3,200,000"],
-["NX 7","C:\\Users\\Burundi Store\\Desktop\\NEW\\pictures\\NX6.jpeg","UGX. 1,500,000","UGX. 500,000","100 Days","UGX. 5,000,000"],
-["NX 8","C:\\Users\\Burundi Store\\Desktop\\NEW\\pictures\\NX7.jpeg","UGX. 2,500,000","UGX. 790,000","100 Days","UGX. 7,900,000"],
-["NX 9","C:\\Users\\Burundi Store\\Desktop\\NEW\\pictures\\NX8.jpeg","UGX. 4,000,000","UGX. 1,200,000","180 Days","UGX. 12,000,000"],
-["NX 10","C:\\Users\\Burundi Store\\Desktop\\NEW\\pictures\\NX9.jpeg","UGX. 7,000,000","UGX. 2,000,000","180 Days","UGX. 20,000,000"],
-["NX 11","C:\\Users\\Burundi Store\\Desktop\\NEW\\pictures\\NX10.jpeg","UGX. 10,000,000","UGX. 5,800,000","180 Days","UGX. 58,000,000"]
+["NX 1","pictures/NX0.jpeg","UGX. 15,000","UGX. 2,500","10 Days","UGX. 25,000"],
+["NX 2","pictures/NX1.jpeg","UGX. 60,000","UGX. 10,000","30 Days","UGX. 100,000"],
+["NX 3","pictures/NX2.jpeg","UGX. 100,000","UGX. 21,000","30 Days","UGX. 210,000"],
+["NX 4","pictures/NX3.jpeg","UGX. 300,000","UGX. 52,000","100 Days","UGX. 520,000"],
+["NX 5","pictures/NX4.jpeg","UGX. 700,000","UGX. 150,000","100 Days","UGX. 1,500,000"],
+["NX 6","pictures/NX5.jpeg","UGX. 1,000,000","UGX. 320,000","100 Days","UGX. 3,200,000"],
+["NX 7","pictures/NX6.jpeg","UGX. 1,500,000","UGX. 500,000","100 Days","UGX. 5,000,000"],
+["NX 8","pictures/NX7.jpeg","UGX. 2,500,000","UGX. 790,000","100 Days","UGX. 7,900,000"],
+["NX 9","pictures/NX8.jpeg","UGX. 4,000,000","UGX. 1,200,000","180 Days","UGX. 12,000,000"],
+["NX 10","pictures/NX9.jpeg","UGX. 7,000,000","UGX. 2,000,000","180 Days","UGX. 20,000,000"],
+["NX 11","pictures/NX10.jpeg","UGX. 10,000,000","UGX. 5,800,000","180 Days","UGX. 58,800,000"]
 ];
 
 products.forEach(p => {
@@ -4538,150 +4677,6 @@ document
 
 });
 
-
-
-/* === NEXA AI INCOME CLICK + ZERO RECHARGE ADDITION === */
-(function(){
-    function aiEsc(v){
-        return String(v == null ? "" : v).replace(/[&<>"']/g,function(c){
-            return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];
-        });
-    }
-    function aiNum(v){
-        var n=Number(String(v==null?"":v).replace(/[^0-9.-]/g,""));
-        return isFinite(n)?n:0;
-    }
-    function aiDate(v){
-        if(v==null || v==="") return null;
-        var d=new Date(v);
-        return isNaN(d.getTime())?null:d;
-    }
-
-    function aiDrives(){
-        var keys=["nexaPurchasedDrives","purchasedDrives","nexaOrders","orders","purchases","purchasedDevices","devicePurchases"];
-        for(var i=0;i<keys.length;i++){
-            try{
-                var raw=localStorage.getItem(keys[i]);
-                if(!raw) continue;
-                var x=JSON.parse(raw);
-                if(Array.isArray(x) && x.length) return x;
-            }catch(e){}
-        }
-        return [];
-    }
-
-    function aiInfo(d){
-        d=d||{};
-        return {
-            name:d.name||d.device||d.product||d.title||d.drive||"AI Drive",
-            cycle:aiNum(d.cycleDays||d.cycle||d.duration||d.days),
-            daily:aiNum(d.dailyIncome||d.daily||d.dailyMoney||d.incomePerDay||d.dailyEarning),
-            bought:aiDate(d.boughtAt||d.purchaseDate||d.purchasedAt||d.date||d.createdAt||d.timestamp)
-        };
-    }
-
-    function aiProgress(d){
-        var x=aiInfo(d);
-        if(!x.bought || !x.cycle) return {x:x,days:0,earned:0,active:false};
-        var elapsed=Math.floor((Date.now()-x.bought.getTime())/86400000);
-        if(elapsed<0) elapsed=0;
-        var days=Math.min(elapsed,x.cycle);
-        return {x:x,days:days,earned:days*x.daily,active:elapsed<x.cycle};
-    }
-
-    function aiPage(){
-        var page=document.getElementById("nexa-ai-income-page");
-        if(!page){
-            page=document.createElement("div");
-            page.id="nexa-ai-income-page";
-            page.className="nexa-ai-income-page";
-            document.body.appendChild(page);
-        }
-        var drives=aiDrives();
-        var html='<h2>AI Income</h2><p class="nexa-ai-note">Your purchased AI drives and their current earnings.</p>';
-
-        if(!drives.length){
-            html+='<div class="nexa-ai-empty">Has not bought anything yet.</div>';
-        }else{
-            html+='<div class="nexa-ai-drive-list">';
-            drives.forEach(function(d){
-                var p=aiProgress(d);
-                html+='<div class="nexa-ai-drive-card">'+
-                    '<h3>'+aiEsc(p.x.name)+'</h3>'+
-                    '<div class="nexa-ai-drive-line"><span>Cycle</span><strong>'+p.x.cycle+' Days</strong></div>'+
-                    '<div class="nexa-ai-drive-line"><span>Days passed</span><strong>'+p.days+' / '+p.x.cycle+'</strong></div>'+
-                    '<div class="nexa-ai-drive-line"><span>Daily income</span><strong>'+p.x.daily.toLocaleString()+'</strong></div>'+
-                    '<div class="nexa-ai-drive-line"><span>Earned</span><strong>'+p.earned.toLocaleString()+'</strong></div>'+
-                    '<div class="nexa-ai-drive-line"><span>Status</span><strong>'+
-                    (p.active?"Running":"Cycle finished")+'</strong></div>'+
-                    '</div>';
-            });
-            html+='</div>';
-        }
-        page.innerHTML=html;
-        page.hidden=false;
-        document.querySelectorAll(".screen").forEach(function(s){s.hidden=true;});
-        document.querySelectorAll(".tabbar").forEach(function(t){t.hidden=false;});
-        window.scrollTo(0,0);
-    }
-
-    /* Catch the existing AI Income element even if its original id/class is different. */
-    document.addEventListener("click",function(e){
-        var el=e.target;
-        if(!el) return;
-        var hit=null;
-        if(el.closest){
-            hit=el.closest("#aiIncome,#ai-income,.ai-income,[data-ai-income]");
-        }
-        if(!hit){
-            var all=document.querySelectorAll("*");
-            for(var i=0;i<all.length;i++){
-                var t=(all[i].textContent||"").trim().toLowerCase();
-                if(t==="ai income"){
-                    hit=all[i];
-                    break;
-                }
-            }
-        }
-        if(hit){
-            e.preventDefault();
-            e.stopPropagation();
-            aiPage();
-        }
-    },true);
-
-    /* Keep recharge/deposit money at zero. This only resets the added-money keys,
-       without changing purchase earnings. */
-    function zeroRecharge(){
-        var keys=["nexaAddedMoney","nexaMoneyAdded","addedMoney","nexaInitialMoney",
-                  "rechargedMoney","rechargeAmount","depositAmount","nexaDepositAmount"];
-        keys.forEach(function(k){
-            try{ localStorage.setItem(k,"0"); }catch(e){}
-        });
-    }
-    zeroRecharge();
-
-    /* Make visible recharge/deposit totals zero without touching AI earnings. */
-    function zeroVisibleRecharge(){
-        var selectors=[
-            "#balance","#availableBalance","#walletBalance","#depositBalance",
-            "#totalDeposit","#totalDeposited","#recharge","#rechargeAmount",
-            "[data-recharge]","[data-deposit]"
-        ];
-        selectors.forEach(function(s){
-            try{
-                document.querySelectorAll(s).forEach(function(el){
-                    el.textContent="0";
-                });
-            }catch(e){}
-        });
-    }
-
-    window.addEventListener("load",function(){
-        zeroRecharge();
-        zeroVisibleRecharge();
-    });
-})();
 
 </script>
 
